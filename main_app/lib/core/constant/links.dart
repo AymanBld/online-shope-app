@@ -1,47 +1,52 @@
 class AppLinks {
   //
 
-  static const String serverLink = "http://10.0.2.2/ecommerce";
+  static const String serverLink = "http://10.0.2.2";
   // static const String serverLink = "https://aymanbld.kesug.com/ecommerce";
 
   //--------auth---------------------------------------------------------------
 
-  static const String login = "$serverLink/auth/login.php";
-  static const String signup = "$serverLink/auth/signup.php";
-  static const String verifyCodeSignup = "$serverLink/auth/verify_code_signup.php";
-  static const String verifyCodeReset = "$serverLink/auth/verify_code_reset.php";
-  static const String resendCode = "$serverLink/auth/resend_code.php";
-  static const String checkEmail = "$serverLink/auth/check_email.php";
-  static const String resetPassword = "$serverLink/auth/reset_password.php";
+  static const String login = "$serverLink/auth/login/";
+  static const String signup = "$serverLink/auth/registration/";
+  // static const String verifyCodeSignup = "$serverLink/auth/verify_code_signup";
+  // static const String verifyCodeReset = "$serverLink/auth/verify_code_reset";
+  // static const String resendCode = "$serverLink/aut  h/resend_code";
+  // static const String checkEmail = "$serverLink/auth/check_email";
+  // static const String resetPassword = "$serverLink/auth/reset_password";
+  static const String verifyCodeSignup = "$serverLink/auth/verify_code_signup";
+  static const String verifyCodeReset = "$serverLink/auth/verify_code_reset";
+  static const String resendCode = "$serverLink/auth/resend_code";
+  static const String checkEmail = "$serverLink/auth/check_email";
+  static const String resetPassword = "$serverLink/auth/reset_password";
 
   //--------home---------------------------------------------------------
 
-  static const String home = "$serverLink/home/home.php";
-  static const String products = "$serverLink/home/products.php";
-  static const String search = "$serverLink/home/search.php";
+  static const String home = "$serverLink/home/home"; // !!!!! not yet
+  static const String dealProducts = "$serverLink/products/deals/";
+  static const String search = "$serverLink/products/search/";
 
   //--------favorite---------------------------------------------------------
 
-  static const String addFav = "$serverLink/favorite/add_fav.php";
-  static const String removFav = "$serverLink/favorite/remove_fav.php";
-  static const String getFav = "$serverLink/favorite/get_fav.php";
+  static const String getFavs = "$serverLink/favorite/";
+  static const String manageFav = "$serverLink/favorite/"; // favorite/<int>/
+  // static const String removFav = "$serverLink/favorite/remove_fav";
 
-  //--------cart---------------------------------------------------------
+  //-------------cart--------------------------------------------------------
 
-  static const String updateCart = "$serverLink/cart/update_cart.php";
-  static const String removCart = "$serverLink/cart/remove_cart.php";
-  static const String getCart = "$serverLink/cart/get_cart.php";
-  static const String checkCoupon = "$serverLink/cart/check_coupon.php";
+  static const String getCart = "$serverLink/cart/";
+  static const String updateRemoveCart = "$serverLink/cart/"; // cart/<int>/
+  static const String addCart = "$serverLink/cart/add/";
+  static const String checkCoupon = "$serverLink/cart/coupon/";
 
-  static const String orderNow = "$serverLink/orders/add_order.php";
-  static const String deleteOrder = "$serverLink/orders/delete_order.php";
-  static const String getOrders = "$serverLink/orders/get_orders.php";
-  static const String getOrderDetails = "$serverLink/orders/order_details.php";
-  static const String getOrderArchive = "$serverLink/orders/get_orders_archive.php";
+  //------------orders---------------------------------------------------------
 
-  //--------address---------------------------------------------------------
+  static const String creatOrder = "$serverLink/orders/";
+  static const String order = "$serverLink/orders/";  // orders/<int>/
+  static const String getActiveOrders = "$serverLink/orders/active/";
+  static const String getArchiveOrders = "$serverLink/orders/archive/";
 
-  static const String addAdr = "$serverLink/address/add_adr.php";
-  static const String removAdr = "$serverLink/address/remove_adr.php";
-  static const String getAdr = "$serverLink/address/get_adr.php";
+  //-------------address---------------------------------------------------------
+
+  static const String getAdrdress = "$serverLink/address/";
+  static const String addres = "$serverLink/address/";  // address/<int>/
 }
