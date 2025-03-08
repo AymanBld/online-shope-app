@@ -11,7 +11,7 @@ class AppLinks {
   // static const String verifyCodeSignup = "$serverLink/auth/verify_code_signup";
   // static const String verifyCodeReset = "$serverLink/auth/verify_code_reset";
   // static const String resendCode = "$serverLink/aut  h/resend_code";
-  // static const String checkEmail = "$serverLink/auth/check_email";
+  // static const String checkEmail    = "$serverLink/auth/check_email";
   // static const String resetPassword = "$serverLink/auth/reset_password";
   static const String verifyCodeSignup = "$serverLink/auth/verify_code_signup";
   static const String verifyCodeReset = "$serverLink/auth/verify_code_reset";
