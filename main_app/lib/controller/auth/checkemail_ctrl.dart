@@ -1,23 +1,22 @@
 import 'package:online_shope_app/core/class/crud.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
-import 'package:online_shope_app/data/datasource/remote/checkemail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CheckEmailCtrl extends GetxController {
   late TextEditingController email;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  Crud crud = Crud();
 
   StatusRequest? statusrequest;
-  CheckEmailData data = CheckEmailData(Get.find());
 
   checkEmail() async {
     if (formKey.currentState!.validate()) {
       statusrequest = StatusRequest.loading;
       update();
 
-      Map response = await data.postRequest(email.text);
+      Map response = await crud.post(url: '');
       statusrequest = handlingStatus(response);
       update();
 
@@ -29,9 +28,7 @@ class CheckEmailCtrl extends GetxController {
       } else if (statusrequest == StatusRequest.failed) {
         Get.defaultDialog(
           title: 'warning',
-          content: const Text(
-            'Email not existe!',
-          ),
+          content: const Text('Email not existe!'),
         );
       }
     }

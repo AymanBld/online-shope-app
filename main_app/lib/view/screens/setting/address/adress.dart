@@ -2,7 +2,7 @@ import 'package:online_shope_app/controller/setting/address/address_ctrl.dart';
 import 'package:online_shope_app/core/class/handling_states.dart';
 import 'package:online_shope_app/core/constant/colors.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
-import 'package:online_shope_app/data/model/address_model.dart';
+import 'package:online_shope_app/model/address_model.dart';
 import 'package:online_shope_app/view/widgets/onboarding/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

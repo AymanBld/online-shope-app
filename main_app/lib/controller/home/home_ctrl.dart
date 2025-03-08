@@ -24,7 +24,7 @@ class HomeCtrl extends HomeCtrlAll {
 
   @override
   initData() async {
-    Map response = await crud.postData(AppLinks.home, {});
+    Map response = await crud.post(url:AppLinks.home,body:  {});
     statusrequest = handlingStatus(response);
     update();
 
@@ -39,10 +39,7 @@ class HomeCtrl extends HomeCtrlAll {
   onTapCat(id) {
     Get.toNamed(
       AppRoutes.categories,
-      arguments: {
-        'categories': categories,
-        'selected_cat': id,
-      },
+      arguments: {'categories': categories, 'selected_cat': id},
     );
   }
 }

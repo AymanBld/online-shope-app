@@ -1,8 +1,6 @@
-
 import 'package:online_shope_app/core/class/crud.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
-import 'package:online_shope_app/data/datasource/remote/resetpass.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +10,7 @@ class ResetPasswordCtrl extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   StatusRequest? statusrequest;
-  ResestPassData data = ResestPassData(Get.find());
+  Crud crud = Crud();
 
   late String email;
 
@@ -22,7 +20,7 @@ class ResetPasswordCtrl extends GetxController {
         statusrequest = StatusRequest.loading;
         update();
 
-        Map response = await data.postRequest(email, resetpassword.text);
+        Map response = await crud.post(url: '');
         statusrequest = handlingStatus(response);
         update();
 
@@ -31,17 +29,13 @@ class ResetPasswordCtrl extends GetxController {
         } else if (statusrequest == StatusRequest.failed) {
           Get.defaultDialog(
             title: 'warning',
-            content: const Text(
-              'Email or Phone allredy existe!',
-            ),
+            content: const Text('Email or Phone allredy existe!'),
           );
         }
       } else {
         Get.defaultDialog(
           title: 'warning',
-          content: const Text(
-            'Verify your new password',
-          ),
+          content: const Text('Verify your new password'),
         );
       }
     }

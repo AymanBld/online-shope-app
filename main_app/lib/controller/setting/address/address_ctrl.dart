@@ -23,9 +23,9 @@ class AddressCtrl extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
 
-    Map response = await crud.postData(
-      AppLinks.getAdr,
-      {'user_id': myservices.sharedpref.getString('id')},
+    Map response = await crud.post(
+      url: AppLinks.getAdrdress,
+      body: {'user_id': myservices.sharedpref.getString('id')},
     );
     statusRequest = handlingStatus(response);
     if (statusRequest == StatusRequest.success) {
@@ -42,7 +42,7 @@ class AddressCtrl extends GetxController {
       buttonColor: AppColor.primryColor,
       onCancel: () {},
       onConfirm: () {
-        crud.postData(AppLinks.removAdr, {'adr_id': id.toString()});
+        crud.post(url: AppLinks.addres, body: {'adr_id': id.toString()});
         addressList.removeWhere((e) => e['address_id'] == id);
         update();
         Get.back();

@@ -19,10 +19,9 @@ class OrdersArchiveCtrl extends GetxController {
   }
 
   getOrders() async {
-    Map response = await crud.postData(
-      AppLinks.getOrderArchive,
-      {'user_id': myservices.sharedpref.getString('id')},
-    );
+    Map response = await crud.post(url:AppLinks.getArchiveOrders,body:  {
+      'user_id': myservices.sharedpref.getString('id'),
+    });
 
     statusrequest = handlingStatus(response);
     if (statusrequest == StatusRequest.success) {
@@ -32,9 +31,6 @@ class OrdersArchiveCtrl extends GetxController {
   }
 
   onOrderDetailsTap(int id) {
-    Get.toNamed(
-      AppRoutes.orderDetails,
-      arguments: {'order_id': id},
-    );
+    Get.toNamed(AppRoutes.orderDetails, arguments: {'order_id': id});
   }
 }

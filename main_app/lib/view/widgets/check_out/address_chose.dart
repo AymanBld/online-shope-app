@@ -1,6 +1,6 @@
 import 'package:online_shope_app/controller/orders/check_out_ctrl.dart';
 import 'package:online_shope_app/core/constant/colors.dart';
-import 'package:online_shope_app/data/model/address_model.dart';
+import 'package:online_shope_app/model/address_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 

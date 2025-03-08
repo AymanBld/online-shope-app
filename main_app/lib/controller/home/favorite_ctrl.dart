@@ -14,22 +14,16 @@ class FavoriteCtrl extends GetxController {
   }
 
   removeFav(String id) {
-    crud.postData(
-      AppLinks.removFav,
-      {
-        'user_id': myservices.sharedpref.getString('id'),
-        'product_id': id,
-      },
-    );
+    crud.post(url:AppLinks.manageFav,body:  {
+      'user_id': myservices.sharedpref.getString('id'),
+      'product_id': id,
+    });
   }
 
   addFav(String id) {
-    crud.postData(
-      AppLinks.addFav,
-      {
-        'user_id': myservices.sharedpref.getString('id'),
-        'product_id': id,
-      },
-    );
+    crud.post(url:AppLinks.manageFav,body:  {
+      'user_id': myservices.sharedpref.getString('id'),
+      'product_id': id,
+    });
   }
 }

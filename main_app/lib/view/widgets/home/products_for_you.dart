@@ -1,6 +1,6 @@
 import 'package:online_shope_app/controller/home/home_ctrl.dart';
 import 'package:online_shope_app/core/constant/colors.dart';
-import 'package:online_shope_app/data/model/products_model.dart';
+import 'package:online_shope_app/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

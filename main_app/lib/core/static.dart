@@ -1,5 +1,5 @@
 import 'package:online_shope_app/core/constant/images.dart';
-import 'package:online_shope_app/data/model/onboarding_model.dart';
+import 'package:online_shope_app/model/onboarding_model.dart';
 import 'package:get/get.dart';
 
 List<OnboardingModel> onboardingList = [

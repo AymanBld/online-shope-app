@@ -2,12 +2,10 @@ import 'package:online_shope_app/core/class/crud.dart';
 import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
-import 'package:online_shope_app/data/datasource/remote/verifycode.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class CheckCodeCtrl extends GetxController {
-  VerifyCodeData data = VerifyCodeData(Get.find());
   StatusRequest? statusrequest;
   Crud crud = Crud();
 
@@ -19,8 +17,8 @@ class CheckCodeCtrl extends GetxController {
     update();
 
     Map response = where == 'signup'
-        ? await data.verifySignupRequest(email, code)
-        : await data.verifyResetRequest(email, code);
+        ? await crud.post(url: '')
+        : await crud.post(url: '');
 
     statusrequest = handlingStatus(response);
     update();
@@ -38,7 +36,7 @@ class CheckCodeCtrl extends GetxController {
   }
 
   resendCode() {
-    crud.postData(AppLinks.resendCode, {'user_email': email});
+    crud.post(url:AppLinks.resendCode,body:  {'user_email': email});
   }
 
   @override

@@ -37,7 +37,7 @@ class NewAddressCtrl extends GetxController {
   }
 
   addAddress() {
-    crud.postData(AppLinks.addAdr, {
+    crud.post(url:AppLinks.addres, body: {
       'adr_name': name.text,
       'adr_city': city.text,
       'adr_street': street.text,

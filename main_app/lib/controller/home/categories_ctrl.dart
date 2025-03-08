@@ -3,7 +3,7 @@ import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:online_shope_app/core/services/services.dart';
-import 'package:online_shope_app/data/model/products_model.dart';
+import 'package:online_shope_app/model/products_model.dart';
 import 'package:get/get.dart';
 
 abstract class CategoriesCtrlAll extends GetxController {
@@ -37,10 +37,10 @@ class CategoriesCtrl extends CategoriesCtrlAll {
 
   @override
   getproducts() async {
-    Map response = await crud.postData(
-      AppLinks.products,
-      {'category_id': '$selectedcat', 'user_id': myservices.sharedpref.getString('id')},
-    );
+    Map response = await crud.post(url:AppLinks.dealProducts,body:  {
+      'category_id': '$selectedcat',
+      'user_id': myservices.sharedpref.getString('id'),
+    });
     statusrequest = handlingStatus(response);
     update();
 
@@ -60,9 +60,6 @@ class CategoriesCtrl extends CategoriesCtrlAll {
 
   @override
   onTapCard(pr) {
-    Get.toNamed(
-      AppRoutes.product,
-      arguments: {'product': pr},
-    );
+    Get.toNamed(AppRoutes.product, arguments: {'product': pr});
   }
 }

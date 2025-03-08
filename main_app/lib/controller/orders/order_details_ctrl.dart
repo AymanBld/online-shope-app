@@ -19,10 +19,9 @@ class OrderDetailsCtrl extends GetxController {
   }
 
   getDetails() async {
-    Map response = await crud.postData(
-      AppLinks.getOrderDetails,
-      {'order_id': Get.arguments['order_id'].toString()},
-    );
+    Map response = await crud.post(url:AppLinks.order,body:  {
+      'order_id': Get.arguments['order_id'].toString(),
+    });
 
     statusrequest = handlingStatus(response);
     if (statusrequest == StatusRequest.success) {

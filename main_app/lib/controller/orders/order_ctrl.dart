@@ -19,11 +19,9 @@ class OrderCtrl extends GetxController {
   }
 
   getOrders() async {
-    Map response = await crud.postData(
-      AppLinks.getOrders,
-      {'user_id': myservices.sharedpref.getString('id')},
-    );
-    
+    Map response = await crud.post(url:AppLinks.getActiveOrders,body:  {
+      'user_id': myservices.sharedpref.getString('id'),
+    });
 
     statusrequest = handlingStatus(response);
     if (statusrequest == StatusRequest.success) {
@@ -33,17 +31,11 @@ class OrderCtrl extends GetxController {
   }
 
   onOrderDetailsTap(int id) {
-    Get.toNamed(
-      AppRoutes.orderDetails,
-      arguments: {'order_id': id},
-    );
+    Get.toNamed(AppRoutes.orderDetails, arguments: {'order_id': id});
   }
 
   deleteOrder(int id) async {
-    await crud.postData(
-      AppLinks.deleteOrder,
-      {'order_id': id.toString()},
-    );
+    await crud.post(url:AppLinks.order,body:  {'order_id': id.toString()});
     await getOrders();
   }
 

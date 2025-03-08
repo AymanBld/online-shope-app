@@ -3,7 +3,7 @@ import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:online_shope_app/core/services/services.dart';
-import 'package:online_shope_app/data/model/products_model.dart';
+import 'package:online_shope_app/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,9 +39,9 @@ class SearchCtrl extends SearchCtrlAll {
     statusrequest = StatusRequest.loading;
     update();
 
-    Map response = await crud.postData(
-      AppLinks.search,
-      {
+    Map response = await crud.post(
+      url: AppLinks.search,
+      body: {
         'name_search': nameSearched,
         'user_id': myservices.sharedpref.getString('id'),
       },
@@ -57,10 +57,7 @@ class SearchCtrl extends SearchCtrlAll {
 
   @override
   onTapCard(pr) {
-    Get.toNamed(
-      AppRoutes.product,
-      arguments: {'product': pr},
-    );
+    Get.toNamed(AppRoutes.product, arguments: {'product': pr});
   }
 
   @override

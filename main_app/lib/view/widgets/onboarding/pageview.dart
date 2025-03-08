@@ -1,5 +1,5 @@
 import 'package:online_shope_app/controller/onboarding_ctrl.dart';
-import 'package:online_shope_app/data/datasource/static/static.dart';
+import 'package:online_shope_app/core/static.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

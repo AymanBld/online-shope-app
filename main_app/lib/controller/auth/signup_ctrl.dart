@@ -1,7 +1,6 @@
 import 'package:online_shope_app/core/class/crud.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
-import 'package:online_shope_app/data/datasource/remote/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +20,8 @@ class SignUpController extends SignUpControllerAll {
   bool? sucureText = true;
 
   StatusRequest? statusrequest;
-  SignupData data = SignupData(Get.find());
+  Crud crud = Crud();
+
 
   @override
   signup() async {
@@ -29,7 +29,7 @@ class SignUpController extends SignUpControllerAll {
       statusrequest = StatusRequest.loading;
       update();
 
-      Map response = await data.postRequest(username.text, email.text, password.text, phone.text);
+      Map response = await crud.post(url: '');
       statusrequest = handlingStatus(response);
       update();
 
