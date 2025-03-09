@@ -3,6 +3,12 @@ import 'package:online_shope_app/core/functions/check_internet.dart';
 import 'package:http/http.dart' as http;
 
 class Crud {
+  Future<Map> get({required String url, String queryPar = ''}) async {
+    return await sendRequest(
+      () => http.get(Uri.parse(url + queryPar)),
+    );
+  }
+
   Future<Map> post({
     required String url,
     Object? body,
@@ -10,6 +16,26 @@ class Crud {
   }) async {
     return await sendRequest(
       () => http.post(Uri.parse(url + queryPar), body: body),
+    );
+  }
+
+  Future<Map> patch({
+    required String url,
+    Object? body,
+    String queryPar = '',
+  }) async {
+    return await sendRequest(
+      () => http.patch(Uri.parse(url + queryPar), body: body),
+    );
+  }
+
+  Future<Map> delete({
+    required String url,
+    Object? body,
+    String queryPar = '',
+  }) async {
+    return await sendRequest(
+      () => http.delete(Uri.parse(url + queryPar), body: body),
     );
   }
 
