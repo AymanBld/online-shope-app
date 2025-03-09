@@ -8,16 +8,19 @@ class AppLinks {
 
   static const String login = "$serverLink/auth/login/";
   static const String signup = "$serverLink/auth/registration/";
+  static const String logout = "$serverLink/auth/logout/";
+
+  static const String restPass = "$serverLink/auth/password/reset/";
+  static const String confirmResetPass = "$serverLink/auth/password/reset/confirm/";
+  static const String changePass = "$serverLink/auth/password/change/";
+  static const String verifyEmail = "$serverLink/auth/registration/verify-email/";
+  static const String resendVerification = "$serverLink/auth/registration/resend-email/";
+
   // static const String verifyCodeSignup = "$serverLink/auth/verify_code_signup";
   // static const String verifyCodeReset = "$serverLink/auth/verify_code_reset";
   // static const String resendCode = "$serverLink/aut  h/resend_code";
-  // static const String checkEmail    = "$serverLink/auth/check_email";
+  // static const String checkEmail = "$serverLink/auth/check_email";
   // static const String resetPassword = "$serverLink/auth/reset_password";
-  static const String verifyCodeSignup = "$serverLink/auth/verify_code_signup";
-  static const String verifyCodeReset = "$serverLink/auth/verify_code_reset";
-  static const String resendCode = "$serverLink/auth/resend_code";
-  static const String checkEmail = "$serverLink/auth/check_email";
-  static const String resetPassword = "$serverLink/auth/reset_password";
 
   //--------home---------------------------------------------------------
 
@@ -41,12 +44,12 @@ class AppLinks {
   //------------orders---------------------------------------------------------
 
   static const String creatOrder = "$serverLink/orders/";
-  static const String order = "$serverLink/orders/";  // orders/<int>/
+  static const String order = "$serverLink/orders/"; // orders/<int>/
   static const String getActiveOrders = "$serverLink/orders/active/";
   static const String getArchiveOrders = "$serverLink/orders/archive/";
 
   //-------------address---------------------------------------------------------
 
   static const String getAdrdress = "$serverLink/address/";
-  static const String addres = "$serverLink/address/";  // address/<int>/
+  static const String addres = "$serverLink/address/"; // address/<int>/
 }
