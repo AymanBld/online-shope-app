@@ -13,10 +13,11 @@ class Crud {
     );
   }
 
-  sendRequest(Future<http.Response> Function() request) async {
+  Future<Map> sendRequest(Future<http.Response> Function() request) async {
     try {
       if (await checkInternet()) {
         http.Response response = await request();
+        print('=======respons============${response.body}======');
 
         if (response.statusCode < 300) {
           Map responsebody = jsonDecode(response.body);
@@ -28,7 +29,7 @@ class Crud {
         return {"status": StatusRequest.internetFailed};
       }
     } catch (e) {
-      print('-----------------------$e-----------');
+      print('------------request error-----------$e-----------');
       return {"status": StatusRequest.exceptionFailed};
     }
   }

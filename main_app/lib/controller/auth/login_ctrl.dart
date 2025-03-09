@@ -38,28 +38,29 @@ class LoginController extends LoginControllerAll {
       update();
 
       if (statusrequest == StatusRequest.success) {
-        if (response['data'][0]['user_verifyed'] == 1) {
-          myservices.sharedpref.setInt('step', 2);
-          myservices.sharedpref.setString(
-            'id',
-            response['data'][0]['user_id'].toString(),
-          );
-          myservices.sharedpref.setString(
-            'username',
-            response['data'][0]['user_name'],
-          );
-          myservices.sharedpref.setString(
-            'email',
-            response['data'][0]['user_email'],
-          );
-          myservices.sharedpref.setString(
-            'phone',
-            response['data'][0]['user_phone'],
-          );
-          Get.offAllNamed(AppRoutes.navBar);
-        } else {
-          Get.offNamed(AppRoutes.checkCode);
-        }
+        Get.toNamed(AppRoutes.signUp);
+        // if (response['data'][0]['user_verifyed'] == 1) {
+        //   myservices.sharedpref.setInt('step', 2);
+        //   myservices.sharedpref.setString(
+        //     'id',
+        //     response['data'][0]['user_id'].toString(),
+        //   );
+        //   myservices.sharedpref.setString(
+        //     'username',
+        //     response['data'][0]['user_name'],
+        //   );
+        //   myservices.sharedpref.setString(
+        //     'email',
+        //     response['data'][0]['user_email'],
+        //   );
+        //   myservices.sharedpref.setString(
+        //     'phone',
+        //     response['data'][0]['user_phone'],
+        //   );
+        //   Get.offAllNamed(AppRoutes.navBar);
+        // } else {
+        //   Get.offNamed(AppRoutes.checkCode);
+        // }
       } else if (statusrequest == StatusRequest.failed) {
         Get.defaultDialog(
           title: 'warning',
