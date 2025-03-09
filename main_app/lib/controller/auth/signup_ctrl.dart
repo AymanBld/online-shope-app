@@ -1,4 +1,5 @@
 import 'package:online_shope_app/core/class/crud.dart';
+import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +14,8 @@ abstract class SignUpControllerAll extends GetxController {
 class SignUpController extends SignUpControllerAll {
   late TextEditingController username;
   late TextEditingController email;
-  late TextEditingController password;
-  late TextEditingController phone;
+  late TextEditingController password1;
+  late TextEditingController password2;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool? sucureText = true;
@@ -22,14 +23,22 @@ class SignUpController extends SignUpControllerAll {
   StatusRequest? statusrequest;
   Crud crud = Crud();
 
-
   @override
   signup() async {
     if (formKey.currentState!.validate()) {
       statusrequest = StatusRequest.loading;
       update();
 
-      Map response = await crud.post(url: '');
+      Map response = await crud.post(
+        url: AppLinks.signup,
+        body: {
+          'username': username.text,
+          'email': email.text,
+          'password1': password1.text,
+          'password2': password2.text,
+        },
+      );
+
       statusrequest = handlingStatus(response);
       update();
 
@@ -41,9 +50,7 @@ class SignUpController extends SignUpControllerAll {
       } else if (statusrequest == StatusRequest.failed) {
         Get.defaultDialog(
           title: 'warning',
-          content: const Text(
-            'Email or Phone allredy existe!',
-          ),
+          content: const Text('Email or Phone allredy existe!'),
         );
       }
     }
@@ -64,8 +71,8 @@ class SignUpController extends SignUpControllerAll {
   void onInit() {
     username = TextEditingController();
     email = TextEditingController();
-    password = TextEditingController();
-    phone = TextEditingController();
+    password1 = TextEditingController();
+    password2 = TextEditingController();
     super.onInit();
   }
 
@@ -73,8 +80,8 @@ class SignUpController extends SignUpControllerAll {
   void onClose() {
     username.dispose();
     email.dispose();
-    password.dispose();
-    phone.dispose();
+    password1.dispose();
+    password2.dispose();
     super.onClose();
   }
 }
