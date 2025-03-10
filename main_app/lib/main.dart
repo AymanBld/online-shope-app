@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(LocalCotroller());
+    LocalCotroller controller = Get.put(LocalCotroller());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       locale: controller.language,

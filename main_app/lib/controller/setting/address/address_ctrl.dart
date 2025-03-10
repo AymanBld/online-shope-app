@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class AddressCtrl extends GetxController {
   Myservices myservices = Get.find();
   StatusRequest statusRequest = StatusRequest.failed;
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   List addressList = [];
 
@@ -23,10 +23,7 @@ class AddressCtrl extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
 
-    Map response = await crud.post(
-      url: AppLinks.getAdrdress,
-      body: {'user_id': myservices.sharedpref.getString('id')},
-    );
+    Map response = await crud.post(url: AppLinks.getAdrdress, body: {'user_id': myservices.sharedpref.getString('id')});
     statusRequest = handlingStatus(response);
     if (statusRequest == StatusRequest.success) {
       addressList = response['data'];

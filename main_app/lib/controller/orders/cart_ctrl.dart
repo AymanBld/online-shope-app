@@ -16,7 +16,7 @@ abstract class CartCtrlAll extends GetxController {
 }
 
 class CartCtrl extends CartCtrlAll {
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
   Myservices myservices = Get.find();
   StatusRequest statusrequest = StatusRequest.loading;
   StatusRequest statusRqCoupon = StatusRequest.failed;
@@ -43,27 +43,24 @@ class CartCtrl extends CartCtrlAll {
 
   @override
   updat(id, contity) async {
-    Map response = await crud.post(url:AppLinks.updateRemoveCart,body:  {
-      'user_id': myservices.sharedpref.getString('id'),
-      'product_id': id,
-      'product_contity': contity.toString(),
-    });
+    Map response = await crud.post(
+      url: AppLinks.updateRemoveCart,
+      body: {'user_id': myservices.sharedpref.getString('id'), 'product_id': id, 'product_contity': contity.toString()},
+    );
     return response;
   }
 
   @override
   remove(id) async {
-    await crud.post(url:AppLinks.updateRemoveCart,body:  {
-      'user_id': myservices.sharedpref.getString('id'),
-      'product_id': id,
-    });
+    await crud.post(
+      url: AppLinks.updateRemoveCart,
+      body: {'user_id': myservices.sharedpref.getString('id'), 'product_id': id},
+    );
   }
 
   @override
   get() async {
-    Map response = await crud.post(url:AppLinks.getCart,body:  {
-      'user_id': myservices.sharedpref.getString('id'),
-    });
+    Map response = await crud.post(url: AppLinks.getCart, body: {'user_id': myservices.sharedpref.getString('id')});
     statusrequest = handlingStatus(response);
 
     if (statusrequest == StatusRequest.success) {
@@ -85,9 +82,7 @@ class CartCtrl extends CartCtrlAll {
     statusRqCoupon = StatusRequest.loading;
     update();
 
-    Map response = await crud.post(url:AppLinks.checkCoupon,body:  {
-      'coupon_name': coupon,
-    });
+    Map response = await crud.post(url: AppLinks.checkCoupon, body: {'coupon_name': coupon});
 
     statusRqCoupon = handlingStatus(response);
 
@@ -109,10 +104,7 @@ class CartCtrl extends CartCtrlAll {
   @override
   checkOut() {
     if (cartProducts.isNotEmpty) {
-      Get.toNamed(
-        AppRoutes.checkOut,
-        arguments: {'total_price': totalPrice, 'total_count': totalCount},
-      );
+      Get.toNamed(AppRoutes.checkOut, arguments: {'total_price': totalPrice, 'total_count': totalCount});
     }
   }
 }

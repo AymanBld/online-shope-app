@@ -21,7 +21,7 @@ class SignUpController extends SignUpControllerAll {
   bool? sucureText = true;
 
   StatusRequest? statusrequest;
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   @override
   signup() async {
@@ -43,15 +43,9 @@ class SignUpController extends SignUpControllerAll {
       update();
 
       if (statusrequest == StatusRequest.success) {
-        Get.offNamed(
-          AppRoutes.checkCode,
-          arguments: {'email': email.text, 'where': 'signup'},
-        );
+        Get.offNamed(AppRoutes.checkCode, arguments: {'email': email.text, 'where': 'signup'});
       } else if (statusrequest == StatusRequest.failed) {
-        Get.defaultDialog(
-          title: 'warning',
-          content: const Text('Email or Phone allredy existe!'),
-        );
+        Get.defaultDialog(title: 'warning', content: const Text('Email or Phone allredy existe!'));
       }
     }
   }

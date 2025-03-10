@@ -12,7 +12,7 @@ class NewAddressCtrl extends GetxController {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   Myservices myservices = Get.find();
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   @override
   void onInit() {
@@ -37,13 +37,16 @@ class NewAddressCtrl extends GetxController {
   }
 
   addAddress() {
-    crud.post(url:AppLinks.addres, body: {
-      'adr_name': name.text,
-      'adr_city': city.text,
-      'adr_street': street.text,
-      'adr_lat': '',
-      'adr_long': '',
-      'adr_user': myservices.sharedpref.getString('id'),
-    });
+    crud.post(
+      url: AppLinks.addres,
+      body: {
+        'adr_name': name.text,
+        'adr_city': city.text,
+        'adr_street': street.text,
+        'adr_lat': '',
+        'adr_long': '',
+        'adr_user': myservices.sharedpref.getString('id'),
+      },
+    );
   }
 }

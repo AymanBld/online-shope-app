@@ -18,7 +18,7 @@ class LoginController extends LoginControllerAll {
   late TextEditingController password;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Crud crud = Crud();
+  Crud crud =Get.find<Crud>();
 
   bool? sucureText = true;
   StatusRequest? statusrequest;

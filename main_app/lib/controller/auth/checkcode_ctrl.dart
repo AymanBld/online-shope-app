@@ -1,5 +1,4 @@
 import 'package:online_shope_app/core/class/crud.dart';
-import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:flutter/widgets.dart';
@@ -7,7 +6,7 @@ import 'package:get/get.dart';
 
 class CheckCodeCtrl extends GetxController {
   StatusRequest? statusrequest;
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   late String email;
   late String where;
@@ -36,7 +35,7 @@ class CheckCodeCtrl extends GetxController {
   }
 
   resendCode() {
-    crud.post(url:AppLinks.resendCode,body:  {'user_email': email});
+    crud.post(url:'',body:  {'user_email': email});
   }
 
   @override

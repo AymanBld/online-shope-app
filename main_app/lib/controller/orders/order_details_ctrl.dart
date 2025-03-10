@@ -5,7 +5,7 @@ import 'package:online_shope_app/core/services/services.dart';
 import 'package:get/get.dart';
 
 class OrderDetailsCtrl extends GetxController {
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
   Myservices myservices = Get.find();
   StatusRequest statusrequest = StatusRequest.loading;
 
@@ -19,9 +19,7 @@ class OrderDetailsCtrl extends GetxController {
   }
 
   getDetails() async {
-    Map response = await crud.post(url:AppLinks.order,body:  {
-      'order_id': Get.arguments['order_id'].toString(),
-    });
+    Map response = await crud.post(url: AppLinks.order, body: {'order_id': Get.arguments['order_id'].toString()});
 
     statusrequest = handlingStatus(response);
     if (statusrequest == StatusRequest.success) {

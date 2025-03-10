@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class CheckEmailCtrl extends GetxController {
   late TextEditingController email;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   StatusRequest? statusrequest;
 

@@ -10,7 +10,7 @@ class ResetPasswordCtrl extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   StatusRequest? statusrequest;
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   late String email;
 

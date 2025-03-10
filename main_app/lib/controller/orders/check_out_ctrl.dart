@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class CheckOutCtrl extends GetxController {
   Myservices myservices = Get.find();
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   List addressList = [];
   double totalprice = 0;
@@ -22,9 +22,7 @@ class CheckOutCtrl extends GetxController {
   }
 
   getAddress() async {
-    Map response = await crud.post(url:AppLinks.getAdrdress,body:  {
-      'user_id': myservices.sharedpref.getString('id'),
-    });
+    Map response = await crud.post(url: AppLinks.getAdrdress, body: {'user_id': myservices.sharedpref.getString('id')});
 
     if (response["status"] == 'success') {
       addressList = response['data'];
@@ -44,13 +42,16 @@ class CheckOutCtrl extends GetxController {
 
   buyNow() {
     if (payment != null && address != null) {
-      crud.post(url:AppLinks.creatOrder,body:  {
-        'user_id': myservices.sharedpref.getString('id'),
-        'order_price': totalprice.toString(),
-        'order_count': totalcount.toString(),
-        'order_payment': payment.toString(),
-        'order_address': address.toString(),
-      });
+      crud.post(
+        url: AppLinks.creatOrder,
+        body: {
+          'user_id': myservices.sharedpref.getString('id'),
+          'order_price': totalprice.toString(),
+          'order_count': totalcount.toString(),
+          'order_payment': payment.toString(),
+          'order_address': address.toString(),
+        },
+      );
       Get.back();
       Get.back();
     }

@@ -11,7 +11,7 @@ abstract class HomeCtrlAll extends GetxController {
 
 class HomeCtrl extends HomeCtrlAll {
   StatusRequest statusrequest = StatusRequest.loading;
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   List categories = [];
   List products = [];
@@ -24,7 +24,7 @@ class HomeCtrl extends HomeCtrlAll {
 
   @override
   initData() async {
-    Map response = await crud.post(url:AppLinks.home,body:  {});
+    Map response = await crud.post(url: AppLinks.home, body: {});
     statusrequest = handlingStatus(response);
     update();
 
@@ -37,9 +37,6 @@ class HomeCtrl extends HomeCtrlAll {
 
   @override
   onTapCat(id) {
-    Get.toNamed(
-      AppRoutes.categories,
-      arguments: {'categories': categories, 'selected_cat': id},
-    );
+    Get.toNamed(AppRoutes.categories, arguments: {'categories': categories, 'selected_cat': id});
   }
 }

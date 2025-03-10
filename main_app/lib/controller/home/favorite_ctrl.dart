@@ -4,7 +4,7 @@ import 'package:online_shope_app/core/services/services.dart';
 import 'package:get/get.dart';
 
 class FavoriteCtrl extends GetxController {
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
   Myservices myservices = Get.find();
   Map productsfav = {};
 
@@ -14,16 +14,10 @@ class FavoriteCtrl extends GetxController {
   }
 
   removeFav(String id) {
-    crud.post(url:AppLinks.manageFav,body:  {
-      'user_id': myservices.sharedpref.getString('id'),
-      'product_id': id,
-    });
+    crud.post(url: AppLinks.manageFav, body: {'user_id': myservices.sharedpref.getString('id'), 'product_id': id});
   }
 
   addFav(String id) {
-    crud.post(url:AppLinks.manageFav,body:  {
-      'user_id': myservices.sharedpref.getString('id'),
-      'product_id': id,
-    });
+    crud.post(url: AppLinks.manageFav, body: {'user_id': myservices.sharedpref.getString('id'), 'product_id': id});
   }
 }

@@ -16,7 +16,7 @@ abstract class CategoriesCtrlAll extends GetxController {
 class CategoriesCtrl extends CategoriesCtrlAll {
   Myservices myservices = Get.find();
   StatusRequest statusrequest = StatusRequest.loading;
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   List categories = [];
   List productsOfCat = [];
@@ -37,10 +37,10 @@ class CategoriesCtrl extends CategoriesCtrlAll {
 
   @override
   getproducts() async {
-    Map response = await crud.post(url:AppLinks.dealProducts,body:  {
-      'category_id': '$selectedcat',
-      'user_id': myservices.sharedpref.getString('id'),
-    });
+    Map response = await crud.post(
+      url: AppLinks.dealProducts,
+      body: {'category_id': '$selectedcat', 'user_id': myservices.sharedpref.getString('id')},
+    );
     statusrequest = handlingStatus(response);
     update();
 

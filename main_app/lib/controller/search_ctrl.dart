@@ -3,20 +3,14 @@ import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:online_shope_app/core/services/services.dart';
-import 'package:online_shope_app/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class SearchCtrlAll extends GetxController {
-  getproducts();
-  onTapCard(ProductModel pr);
-  onSearch() {}
-}
 
-class SearchCtrl extends SearchCtrlAll {
+class SearchCtrl extends GetxController {
   Myservices myservices = Get.find();
   StatusRequest statusrequest = StatusRequest.failed;
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
 
   late TextEditingController searchCtrl;
   List productsFound = [];
@@ -34,17 +28,13 @@ class SearchCtrl extends SearchCtrlAll {
     super.onClose();
   }
 
-  @override
   getproducts() async {
     statusrequest = StatusRequest.loading;
     update();
 
     Map response = await crud.post(
       url: AppLinks.search,
-      body: {
-        'name_search': nameSearched,
-        'user_id': myservices.sharedpref.getString('id'),
-      },
+      body: {'name_search': nameSearched, 'user_id': myservices.sharedpref.getString('id')},
     );
     statusrequest = handlingStatus(response);
 
@@ -55,12 +45,10 @@ class SearchCtrl extends SearchCtrlAll {
     update();
   }
 
-  @override
   onTapCard(pr) {
     Get.toNamed(AppRoutes.product, arguments: {'product': pr});
   }
 
-  @override
   onSearch() {
     if (searchCtrl.text.isNotEmpty) {
       nameSearched = searchCtrl.text;

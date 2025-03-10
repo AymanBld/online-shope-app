@@ -6,7 +6,7 @@ import 'package:online_shope_app/core/services/services.dart';
 import 'package:get/get.dart';
 
 class OrderCtrl extends GetxController {
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
   Myservices myservices = Get.find();
   StatusRequest statusrequest = StatusRequest.loading;
 
@@ -19,9 +19,10 @@ class OrderCtrl extends GetxController {
   }
 
   getOrders() async {
-    Map response = await crud.post(url:AppLinks.getActiveOrders,body:  {
-      'user_id': myservices.sharedpref.getString('id'),
-    });
+    Map response = await crud.post(
+      url: AppLinks.getActiveOrders,
+      body: {'user_id': myservices.sharedpref.getString('id')},
+    );
 
     statusrequest = handlingStatus(response);
     if (statusrequest == StatusRequest.success) {
@@ -35,7 +36,7 @@ class OrderCtrl extends GetxController {
   }
 
   deleteOrder(int id) async {
-    await crud.post(url:AppLinks.order,body:  {'order_id': id.toString()});
+    await crud.post(url: AppLinks.order, body: {'order_id': id.toString()});
     await getOrders();
   }
 

@@ -5,7 +5,7 @@ import 'package:online_shope_app/core/services/services.dart';
 import 'package:get/get.dart';
 
 class MyFavoriteCtrl extends GetxController {
-  Crud crud = Crud();
+  Crud crud = Get.find<Crud>();
   Myservices myservices = Get.find();
   StatusRequest statusrequest = StatusRequest.loading;
 
@@ -18,10 +18,7 @@ class MyFavoriteCtrl extends GetxController {
   }
 
   getFavorites() async {
-    Map response = await crud.post(
-      url:AppLinks.getFavs,
-      body: {'user_id': myservices.sharedpref.getString('id')},
-    );
+    Map response = await crud.post(url: AppLinks.getFavs, body: {'user_id': myservices.sharedpref.getString('id')});
     statusrequest = handlingStatus(response);
 
     if (statusrequest == StatusRequest.success) {
@@ -32,11 +29,8 @@ class MyFavoriteCtrl extends GetxController {
 
   removeFav(int id) {
     crud.post(
-     url: AppLinks.manageFav,
-      body: {
-        'user_id': myservices.sharedpref.getString('id'),
-        'product_id': id.toString(),
-      },
+      url: AppLinks.manageFav,
+      body: {'user_id': myservices.sharedpref.getString('id'), 'product_id': id.toString()},
     );
 
     favProducts.removeWhere((pr) => pr['product_id'] == id);
