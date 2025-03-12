@@ -28,11 +28,11 @@ class Login extends StatelessWidget {
                 Header(title: 'login t'.tr, subtitle: 'login s'.tr),
                 const SizedBox(height: 30),
                 CustumTextField(
-                  control: controller.email,
+                  control: controller.username,
                   type: TextInputType.emailAddress,
-                  hint: 'username',
+                  hint: 'Enter your Email or Username',
                   label: 'Username',
-                  icon: Icons.email_outlined,
+                  icon: Icons.person_outline,
                   valid: (val) {
                     return validate(val!, 'username');
                   },

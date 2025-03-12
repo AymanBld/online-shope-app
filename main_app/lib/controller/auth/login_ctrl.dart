@@ -6,25 +6,17 @@ import 'package:online_shope_app/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-abstract class LoginControllerAll extends GetxController {
-  login();
-  goToSignup();
-  forgetPass();
-  onPasswordTap();
-}
-
-class LoginController extends LoginControllerAll {
-  late TextEditingController email;
+class LoginController extends GetxController {
+  late TextEditingController username;
   late TextEditingController password;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  Crud crud =Get.find<Crud>();
+  Crud crud = Get.find<Crud>();
 
   bool? sucureText = true;
   StatusRequest? statusrequest;
   Myservices myservices = Get.find();
 
-  @override
   login() async {
     if (formKey.currentState!.validate()) {
       statusrequest = StatusRequest.loading;
@@ -32,55 +24,40 @@ class LoginController extends LoginControllerAll {
 
       Map response = await crud.post(
         url: AppLinks.login,
-        body: {'username': email.text, 'password': password.text},
+        body: {
+          if (username.text.isEmail) 'email': username.text,
+          if (!username.text.isEmail) 'username': username.text,
+          'password': password.text,
+        },
       );
       statusrequest = handlingStatus(response);
       update();
 
       if (statusrequest == StatusRequest.success) {
-        Get.toNamed(AppRoutes.signUp);
-        // if (response['data'][0]['user_verifyed'] == 1) {
-        //   myservices.sharedpref.setInt('step', 2);
-        //   myservices.sharedpref.setString(
-        //     'id',
-        //     response['data'][0]['user_id'].toString(),
-        //   );
-        //   myservices.sharedpref.setString(
-        //     'username',
-        //     response['data'][0]['user_name'],
-        //   );
-        //   myservices.sharedpref.setString(
-        //     'email',
-        //     response['data'][0]['user_email'],
-        //   );
-        //   myservices.sharedpref.setString(
-        //     'phone',
-        //     response['data'][0]['user_phone'],
-        //   );
-        //   Get.offAllNamed(AppRoutes.navBar);
-        // } else {
-        //   Get.offNamed(AppRoutes.checkCode);
-        // }
+        await myservices.sharedpref.setInt('step', 2);
+        await myservices.sharedpref.setString('id', response['user']['id'].toString());
+        await myservices.sharedpref.setString('username', response['user']['username']);
+        await myservices.sharedpref.setString('email', response['user']['email']);
+        await myservices.sharedpref.setString('phone', response['user']['phone']);
+        if (response['user']['is_active']) {
+          Get.offAllNamed(AppRoutes.navBar);
+        } else {
+          Get.offNamed(AppRoutes.checkCode);
+        }
       } else if (statusrequest == StatusRequest.failed) {
-        Get.defaultDialog(
-          title: 'warning',
-          content: const Text('Email or password not correct'),
-        );
+        Get.defaultDialog(title: 'Ooops', content: Text(response['error']));
       }
     }
   }
 
-  @override
   forgetPass() {
     Get.toNamed(AppRoutes.checkEmeil);
   }
 
-  @override
   goToSignup() {
     Get.offNamed(AppRoutes.signUp);
   }
 
-  @override
   onPasswordTap() {
     sucureText = !sucureText!;
     update();
@@ -88,14 +65,14 @@ class LoginController extends LoginControllerAll {
 
   @override
   void onInit() {
-    email = TextEditingController();
+    username = TextEditingController();
     password = TextEditingController();
     super.onInit();
   }
 
   @override
   void onClose() {
-    email.dispose();
+    username.dispose();
     password.dispose();
     super.onClose();
   }
