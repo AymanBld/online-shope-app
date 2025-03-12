@@ -1,48 +1,49 @@
 class OrderModel {
-  int? orderId;
-  int? orderUser;
-  String? orderPrice;
-  int? orderCount;
-  int? orderPayement;
-  int? orderAddress;
-  int? orderStatus;
-  String? orderDate;
-  String? addressName;
+  late int id;
+  late int totalPrice;
+  late int quantity;
+  late String paymentMethod;
+  late int status;
+  late String date;
+  late int user;
+  late int delivery;
+  late int address;
 
-  OrderModel(
-      {this.orderId,
-      this.orderUser,
-      this.orderPrice,
-      this.orderCount,
-      this.orderPayement,
-      this.orderAddress,
-      this.orderStatus,
-      this.orderDate,
-      this.addressName});
+  OrderModel({
+    required this.id,
+    required this.totalPrice,
+    required this.quantity,
+    required this.paymentMethod,
+    required this.status,
+    required this.date,
+    required this.user,
+    required this.delivery,
+    required this.address,
+  });
 
   OrderModel.fromJson(Map<String, dynamic> json) {
-    orderId = json['order_id'];
-    orderUser = json['order_user'];
-    orderPrice = json['order_price'];
-    orderCount = json['order_count'];
-    orderPayement = json['order_payement'];
-    orderAddress = json['order_address'];
-    orderStatus = json['order_status'];
-    orderDate = json['order_date'];
-    addressName = json['address_name'];
+    id = json['id'];
+    totalPrice = json['total_price'];
+    quantity = json['quantity'];
+    paymentMethod = json['payment_method'];
+    status = json['status'];
+    date = json['date'];
+    user = json['user'];
+    delivery = json['delivery'];
+    address = json['address'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['order_id'] = this.orderId;
-    data['order_user'] = this.orderUser;
-    data['order_price'] = this.orderPrice;
-    data['order_count'] = this.orderCount;
-    data['order_payement'] = this.orderPayement;
-    data['order_address'] = this.orderAddress;
-    data['order_status'] = this.orderStatus;
-    data['order_date'] = this.orderDate;
-    data['address_name'] = this.addressName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['total_price'] = totalPrice;
+    data['quantity'] = quantity;
+    data['payment_method'] = paymentMethod;
+    data['status'] = status;
+    data['date'] = date;
+    data['user'] = user;
+    data['delivery'] = delivery;
+    data['address'] = address;
     return data;
   }
 }

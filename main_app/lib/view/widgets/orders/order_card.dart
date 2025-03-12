@@ -6,10 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class OrderCard extends GetView<OrderCtrl> {
   final OrderModel rdr;
-  const OrderCard({
-    required this.rdr,
-    super.key,
-  });
+  const OrderCard({required this.rdr, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +34,11 @@ class OrderCard extends GetView<OrderCtrl> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('${rdr.orderId}'),
-                    Text('${rdr.orderPrice}'),
-                    Text('${rdr.orderCount}'),
-                    Text('${rdr.addressName}'),
-                    Text(controller.decodeStatus(rdr.orderStatus!)),
+                    Text('${rdr.id}'),
+                    Text('${rdr.totalPrice}'),
+                    Text('${rdr.quantity}'),
+                    Text('${rdr.address}'),
+                    Text(controller.decodeStatus(rdr.status)),
                   ],
                 ),
               ],
@@ -50,27 +47,25 @@ class OrderCard extends GetView<OrderCtrl> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                rdr.orderStatus == 0
+                rdr.status == 0
                     ? IconButton(
-                        onPressed: () {
-                          controller.deleteOrder(rdr.orderId!);
-                        },
-                        iconSize: 28,
-                        color: AppColor.primryColorDark,
-                        icon: const Icon(Icons.delete),
-                      )
+                      onPressed: () {
+                        controller.deleteOrder(rdr.id);
+                      },
+                      iconSize: 28,
+                      color: AppColor.primryColorDark,
+                      icon: const Icon(Icons.delete),
+                    )
                     : const SizedBox(),
                 FilledButton(
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(AppColor.primryColorDark),
-                  ),
+                  style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(AppColor.primryColorDark)),
                   onPressed: () {
-                    controller.onOrderDetailsTap(rdr.orderId!);
+                    controller.onOrderDetailsTap(rdr.id);
                   },
                   child: const Text('Detailes'),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

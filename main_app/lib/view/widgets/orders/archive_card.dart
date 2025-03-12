@@ -6,10 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class ArchiveCard extends GetView<OrdersArchiveCtrl> {
   final OrderModel rdr;
-  const ArchiveCard({
-    required this.rdr,
-    super.key,
-  });
+  const ArchiveCard({required this.rdr, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +32,10 @@ class ArchiveCard extends GetView<OrdersArchiveCtrl> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('${rdr.orderId}'),
-                    Text('${rdr.orderPrice}'),
-                    Text('${rdr.orderCount}'),
-                    Text('${rdr.addressName}'),
+                    Text('${rdr.id}'),
+                    Text('${rdr.totalPrice}'),
+                    Text('${rdr.quantity}'),
+                    Text('${rdr.address}'),
                   ],
                 ),
               ],
@@ -48,16 +45,14 @@ class ArchiveCard extends GetView<OrdersArchiveCtrl> {
               children: [
                 const Spacer(),
                 FilledButton(
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(AppColor.primryColorDark),
-                  ),
+                  style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(AppColor.primryColorDark)),
                   onPressed: () {
-                    controller.onOrderDetailsTap(rdr.orderId!);
+                    controller.onOrderDetailsTap(rdr.id);
                   },
                   child: const Text('Detailes'),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

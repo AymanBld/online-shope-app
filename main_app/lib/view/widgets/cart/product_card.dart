@@ -31,7 +31,7 @@ class CartProduct extends StatelessWidget {
                           fit: BoxFit.contain,
                         ),
                       ),
-                      Expanded(child: ListTile(title: Text(pr.name), subtitle: Text(pr.discount!))),
+                      Expanded(child: ListTile(title: Text(pr.name), subtitle: Text(pr.discount))),
                       SizedBox(
                         height: 130,
                         child: Column(

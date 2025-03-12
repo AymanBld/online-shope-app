@@ -18,39 +18,40 @@ class OrderDetails extends StatelessWidget {
       appBar: const CustumAppBar(title: 'Order Details'),
       body: GetBuilder<OrderDetailsCtrl>(
         init: OrderDetailsCtrl(),
-        builder: (controller) => HandlingStates(
-          status: controller.statusrequest,
-          widget: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: ListView(
-              children: [
-                Card(
-                  color: AppColor.backgroundColor,
-                  elevation: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        const ProductTable(),
-                        const Divider(),
-                        Text(
-                          controller.orderPrice.toString(),
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
-                            color: AppColor.primryColorDark,
-                          ),
-                        )
-                      ],
+        builder:
+            (controller) => HandlingStates(
+              status: controller.statusrequest,
+              widget: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: ListView(
+                  children: [
+                    Card(
+                      color: AppColor.backgroundColor,
+                      elevation: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            const ProductTable(),
+                            const Divider(),
+                            Text(
+                              controller.price.toString(),
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 23,
+                                fontWeight: FontWeight.bold,
+                                color: AppColor.primryColorDark,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    const AddressCard(),
+                  ],
                 ),
-                const AddressCard()
-              ],
+              ),
             ),
-          ),
-        ),
       ),
     );
   }

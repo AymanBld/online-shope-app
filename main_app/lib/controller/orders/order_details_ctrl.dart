@@ -10,7 +10,7 @@ class OrderDetailsCtrl extends GetxController {
   StatusRequest statusrequest = StatusRequest.loading;
 
   List orderProducts = [];
-  double orderPrice = 0;
+  double price = 0;
 
   @override
   void onInit() {
@@ -24,7 +24,7 @@ class OrderDetailsCtrl extends GetxController {
     statusrequest = handlingStatus(response);
     if (statusrequest == StatusRequest.success) {
       orderProducts = response['data'];
-      orderPrice = double.parse(response['data'][0]['order_price']);
+      price = double.parse(response['data'][0]['order_price']);
     }
     update();
   }
