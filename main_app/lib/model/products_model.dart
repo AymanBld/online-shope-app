@@ -1,85 +1,51 @@
+import 'package:online_shope_app/model/categories_model.dart';
+
 class ProductModel {
-  int? productId;
-  String? productName;
-  String? productNameAr;
-  String? productDescription;
-  String? productDescriptionAr;
-  String? productImage;
-  String? productPrice;
-  int? productDiscount;
-  String? productTime;
-  int? productCategorie;
-  String? productDiscountPrice;
-  int? categorieId;
-  String? categorieName;
-  String? categorieNameAr;
-  String? categorieImage;
-  String? categorieTime;
-  int? isfavorite;
-  int? cartPrContity;
+  late int id;
+  late String name;
+  String? description;
+  String? imageUrl;
+  late double price;
+  int? discount;
+  late bool isFavorite;
+  late CategoryModel category;
+  late double dicountedPrice;
 
   ProductModel({
-    productId,
-    productName,
-    productNameAr,
-    productDescription,
-    productDescriptionAr,
-    productImage,
-    productPrice,
-    productDiscount,
-    productTime,
-    productCategorie,
-    productDiscountPrice,
-    categorieId,
-    categorieName,
-    categorieNameAr,
-    categorieImage,
-    categorieTime,
-    isfavorite,
-    cartPrContity,
+    required this.id,
+    required this.name,
+    this.description,
+    this.imageUrl,
+    required this.price,
+    this.discount,
+    required this.isFavorite,
+    required this.category,
+    required this.dicountedPrice,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    productId = json['product_id'];
-    productName = json['product_name'];
-    productNameAr = json['product_name_ar'];
-    productDescription = json['product_description'];
-    productDescriptionAr = json['product_description_ar'];
-    productImage = json['product_image'];
-    productPrice = json['product_price'];
-    productDiscount = json['product_discount'];
-    productTime = json['product_time'];
-    productCategorie = json['product_categorie'];
-    productDiscountPrice = json['product_discount_price'];
-    categorieId = json['categorie_id'];
-    categorieName = json['categorie_name'];
-    categorieNameAr = json['categorie_name_ar'];
-    categorieImage = json['categorie_image'];
-    categorieTime = json['categorie_time'];
-    isfavorite = json['isfavorite'];
-    cartPrContity = json['cart_pr_contity'];
+    id = json['id'];
+    name = json['name'];
+    description = json['description'];
+    imageUrl = json['image_url'];
+    price = json['price'];
+    discount = json['discount'];
+    isFavorite = json['is_favorite'];
+    dicountedPrice = json['dicountedPrice'];
+    category = CategoryModel.fromJson(json['category']);
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['product_id'] = productId;
-    data['product_name'] = productName;
-    data['product_name_ar'] = productNameAr;
-    data['product_description'] = productDescription;
-    data['product_description_ar'] = productDescriptionAr;
-    data['product_image'] = productImage;
-    data['product_price'] = productPrice;
-    data['product_discount'] = productDiscount;
-    data['product_time'] = productTime;
-    data['product_categorie'] = productCategorie;
-    data['product_discount_price'] = productDiscountPrice;
-    data['categorie_id'] = categorieId;
-    data['categorie_name'] = categorieName;
-    data['categorie_name_ar'] = categorieNameAr;
-    data['categorie_image'] = categorieImage;
-    data['categorie_time'] = categorieTime;
-    data['isfavorite'] = isfavorite;
-    data['cart_pr_contity'] = cartPrContity;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['description'] = description;
+    data['image_url'] = imageUrl;
+    data['price'] = price;
+    data['discount'] = discount;
+    data['is_favorite'] = isFavorite;
+    data['dicountedPrice'] = dicountedPrice;
+    data['category'] = category.toJson();
     return data;
   }
 }

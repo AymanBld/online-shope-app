@@ -18,7 +18,9 @@ class AppLinks {
 
   static const String home = "$serverLink/home/home"; // !!!!! not yet
   static const String dealProducts = "$serverLink/products/deals/";
+  static const String productsByCategory = "$serverLink/products/category/"; //  category/<int>
   static const String search = "$serverLink/products/search/";
+  static const String category = "$serverLink/category/";
 
   //--------favorite---------------------------------------------------------
 

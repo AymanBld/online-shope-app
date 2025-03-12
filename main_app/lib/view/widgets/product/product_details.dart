@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductDetails extends GetView<ProductCtrl> {
-  const ProductDetails({
-    super.key,
-  });
+  const ProductDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +22,8 @@ class ProductDetails extends GetView<ProductCtrl> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            Text(
-              controller.pr.productName!,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Text(controller.pr.productDescription! * 10),
+            Text(controller.pr.name, style: Theme.of(context).textTheme.titleMedium),
+            Text('${controller.pr.discount! * 10}'),
             const SizedBox(height: 10),
             const Counter(),
           ],

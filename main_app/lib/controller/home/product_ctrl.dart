@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ProductCtrl extends GetxController {
-  ProductModel pr = ProductModel();
+  late ProductModel pr;
   CartCtrl cartCtrl = CartCtrl();
   int contityToAdd = 0;
 
@@ -20,7 +20,7 @@ class ProductCtrl extends GetxController {
   }
 
   addToCart() async {
-    Map response = await cartCtrl.updat(pr.productId.toString(), contityToAdd);
+    Map response = await cartCtrl.updat(pr.id.toString(), contityToAdd);
     if (response['status'] == 'success') {
       Get.snackbar(
         'succes',

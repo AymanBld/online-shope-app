@@ -1,32 +1,21 @@
-class CategoriesModel {
-  int? categorieId;
-  String? categorieName;
-  String? categorieNameAr;
-  String? categorieImage;
-  String? categorieTime;
+class CategoryModel {
+  late int id;
+  late String name;
+  String? imageUrl;
 
-  CategoriesModel(
-      {this.categorieId,
-      this.categorieName,
-      this.categorieNameAr,
-      this.categorieImage,
-      this.categorieTime});
+  CategoryModel({required this.id, required this.name, this.imageUrl});
 
-  CategoriesModel.fromJson(Map<String, dynamic> json) {
-    categorieId = json['categorie_id'];
-    categorieName = json['categorie_name'];
-    categorieNameAr = json['categorie_name_ar'];
-    categorieImage = json['categorie_image'];
-    categorieTime = json['categorie_time'];
+  CategoryModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    imageUrl = json['image_url'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['categorie_id'] = categorieId;
-    data['categorie_name'] = categorieName;
-    data['categorie_name_ar'] = categorieNameAr;
-    data['categorie_image'] = categorieImage;
-    data['categorie_time'] = categorieTime;
+    data['id'] = id;
+    data['name'] = name;
+    data['image_url'] = imageUrl;
     return data;
   }
 }

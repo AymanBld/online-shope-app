@@ -24,13 +24,14 @@ class HomeCtrl extends HomeCtrlAll {
 
   @override
   initData() async {
-    Map response = await crud.post(url: AppLinks.home, body: {});
-    statusrequest = handlingStatus(response);
+    Map responseCategory = await crud.get(url: AppLinks.category);
+    Map responseDeal = await crud.get(url: AppLinks.dealProducts);
+    statusrequest = handlingStatus(responseDeal);
     update();
 
     if (statusrequest == StatusRequest.success) {
-      categories.addAll(response['categories']);
-      products.addAll(response['products']);
+      categories.addAll(responseCategory['data']);
+      products.addAll(responseDeal['data']);
       update();
     } else {}
   }

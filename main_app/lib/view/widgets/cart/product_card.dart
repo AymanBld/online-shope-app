@@ -10,71 +10,65 @@ class CartProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartCtrl>(
-      builder: (controller) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: ListView.separated(
-          itemCount: controller.cartProducts.length,
-          separatorBuilder: (context, index) => const SizedBox(height: 10),
-          itemBuilder: (context, index) {
-            ProductModel pr = ProductModel.fromJson(controller.cartProducts[index]);
-            return Card(
-              elevation: 3,
-              color: AppColor.primryColorLight,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 110,
-                    child: Image.asset(
-                      // pr.productImage!,
-                      'assets/pngs/iphone.png',
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  Expanded(
-                    child: ListTile(
-                      title: Text(pr.productName!),
-                      subtitle: Text(pr.productDescription!),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 130,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () async {
-                            await controller.updat(pr.productId.toString(), 1);
-                            await controller.get();
-                          },
-                          icon: const Icon(
-                            Icons.add,
-                          ),
+      builder:
+          (controller) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: ListView.separated(
+              itemCount: controller.cartProducts.length,
+              separatorBuilder: (context, index) => const SizedBox(height: 10),
+              itemBuilder: (context, index) {
+                ProductModel pr = ProductModel.fromJson(controller.cartProducts[index]);
+                return Card(
+                  elevation: 3,
+                  color: AppColor.primryColorLight,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 110,
+                        child: Image.asset(
+                          // pr.productImage!,
+                          'assets/pngs/iphone.png',
+                          fit: BoxFit.contain,
                         ),
-                        Text(
-                          '${pr.cartPrContity}',
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Expanded(child: ListTile(title: Text(pr.name), subtitle: Text(pr.discount!))),
+                      SizedBox(
+                        height: 130,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              onPressed: () async {
+                                await controller.updat(pr.id.toString(), 1);
+                                await controller.get();
+                              },
+                              icon: const Icon(Icons.add),
+                            ),
+                            Text(
+                              '${pr.cartPrContity}',
+                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            IconButton(
+                              onPressed: () async {
+                                if (pr.cartPrContity == 1) {
+                                  await controller.remove(pr.id.toString());
+                                } else {
+                                  await controller.updat(pr.id.toString(), -1);
+                                }
+                                await controller.get();
+                              },
+                              icon: const Icon(Icons.minimize),
+                            ),
+                          ],
                         ),
-                        IconButton(
-                          onPressed: () async {
-                            if (pr.cartPrContity == 1) {
-                              await controller.remove(pr.productId.toString());
-                            } else {
-                              await controller.updat(pr.productId.toString(), -1);
-                            }
-                            await controller.get();
-                          },
-                          icon: const Icon(Icons.minimize),
-                        )
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 10),
+                    ],
                   ),
-                  const SizedBox(width: 10),
-                ],
-              ),
-            );
-          },
-        ),
-      ),
+                );
+              },
+            ),
+          ),
     );
   }
 }
