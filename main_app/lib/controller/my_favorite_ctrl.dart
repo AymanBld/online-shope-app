@@ -18,7 +18,7 @@ class MyFavoriteCtrl extends GetxController {
   }
 
   getFavorites() async {
-    Map response = await crud.post(url: AppLinks.getFavs, body: {'user_id': myservices.sharedpref.getString('id')});
+    Map response = await crud.post(url: AppLinks.manageFav, body: {'user_id': myservices.sharedpref.getString('id')});
     statusrequest = handlingStatus(response);
 
     if (statusrequest == StatusRequest.success) {

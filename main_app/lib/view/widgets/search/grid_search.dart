@@ -1,4 +1,3 @@
-import 'package:online_shope_app/controller/home/favorite_ctrl.dart';
 import 'package:online_shope_app/controller/search_ctrl.dart';
 import 'package:online_shope_app/core/class/handling_states.dart';
 import 'package:online_shope_app/core/constant/colors.dart';
@@ -11,7 +10,6 @@ class GridSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FavoriteCtrl favcontroller = Get.put(FavoriteCtrl());
     return GetBuilder<SearchCtrl>(
       builder:
           (controller) => HandlingStates(
@@ -27,7 +25,6 @@ class GridSearch extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   ProductModel pr = ProductModel.fromJson(controller.productsFound[index]);
-                  favcontroller.productsfav[pr.id] = pr.isFavorite;
                   return InkWell(
                     onTap: () {
                       controller.onTapCard(pr);
@@ -49,25 +46,19 @@ class GridSearch extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text(pr.name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                              GetBuilder<FavoriteCtrl>(
-                                builder: (favcontroller) {
-                                  return InkWell(
-                                    onTap: () {
-                                      if (favcontroller.productsfav[pr.id] == 0) {
-                                        favcontroller.changFav(pr.id, 1);
-                                        favcontroller.addFav(pr.id.toString());
-                                      } else {
-                                        favcontroller.changFav(pr.id, 0);
-                                        favcontroller.removeFav(pr.id.toString());
-                                      }
-                                    },
-                                    child: Icon(
-                                      color: AppColor.primryColorDark,
-                                      favcontroller.productsfav[pr.id] == 1 ? Icons.favorite : Icons.favorite_border,
-                                    ),
-                                  );
+                              Text(pr.name, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                              InkWell(
+                                onTap: () {
+                                  if (pr.isFavorite) {
+                                    controller.removeFav(pr);
+                                  } else {
+                                    controller.addFav(pr);
+                                  }
                                 },
+                                child: Icon(
+                                  color: AppColor.primryColorDark,
+                                  pr.isFavorite ? Icons.favorite : Icons.favorite_border,
+                                ),
                               ),
                             ],
                           ),
@@ -76,7 +67,7 @@ class GridSearch extends StatelessWidget {
                             children: [
                               Text(
                                 '${pr.dicountedPrice} \$',
-                                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               pr.discount == '0'
                                   ? const Text('')

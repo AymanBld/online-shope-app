@@ -4,57 +4,47 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({
-    super.key,
-  });
+  const HomeAppBar({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
-    SearchCtrl searchController = Get.put(SearchCtrl());
+    SearchCtrl controller = Get.put(SearchCtrl());
     return SafeArea(
       child: Row(
         children: [
-          if (navigator!.canPop())
-            SizedBox(
-              width: 35,
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(Icons.arrow_back_ios_new),
-              ),
-            ),
           Expanded(
             child: TextField(
-              controller: searchController.searchCtrl,
-              onChanged: (value) {},
+              controller: controller.searchField,
+              onChanged: (value) async {
+                if (value.isEmpty) {
+                  Get.back();
+                } else {
+                  await controller.searchProducts();
+                }
+              },
+              onSubmitted: (value) async => await controller.goSearch(),
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey[300],
                 prefixIcon: IconButton(
                   onPressed: () {
-                    searchController.onSearch();
+                    controller.goSearch();
+                    FocusScope.of(Get.context!).unfocus();
                   },
                   icon: const Icon(Icons.search),
                 ),
                 hintText: 'Search',
                 hintStyle: Theme.of(context).textTheme.bodyLarge,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide.none,
-                ),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: BorderSide.none),
               ),
             ),
           ),
           const SizedBox(width: 5),
           Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey[300],
-            ),
+            decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey[300]),
             height: 50,
             width: 50,
             child: const Icon(
@@ -68,10 +58,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               Get.toNamed(AppRoutes.myFavorite);
             },
             child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey[300],
-              ),
+              decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey[300]),
               height: 50,
               width: 50,
               child: const Icon(
