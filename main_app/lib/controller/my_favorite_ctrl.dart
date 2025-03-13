@@ -1,8 +1,10 @@
 import 'package:online_shope_app/core/class/crud.dart';
 import 'package:online_shope_app/core/constant/links.dart';
+import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:online_shope_app/core/services/services.dart';
 import 'package:get/get.dart';
+import 'package:online_shope_app/model/products_model.dart';
 
 class MyFavoriteCtrl extends GetxController {
   Crud crud = Get.find<Crud>();
@@ -17,8 +19,8 @@ class MyFavoriteCtrl extends GetxController {
     super.onInit();
   }
 
-  getFavorites() async {
-    Map response = await crud.post(url: AppLinks.manageFav, body: {'user_id': myservices.sharedpref.getString('id')});
+  Future<void> getFavorites() async {
+    Map response = await crud.get(url: AppLinks.manageFav);
     statusrequest = handlingStatus(response);
 
     if (statusrequest == StatusRequest.success) {
@@ -27,14 +29,13 @@ class MyFavoriteCtrl extends GetxController {
     update();
   }
 
-  removeFav(int id) {
-    crud.post(
-      url: AppLinks.manageFav,
-      body: {'user_id': myservices.sharedpref.getString('id'), 'product_id': id.toString()},
-    );
-
-    favProducts.removeWhere((pr) => pr['product_id'] == id);
-
+  void removeFav(ProductModel pr) {
+    crud.delete(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
+    favProducts.removeWhere((product) => product['id'] == pr.id);
     update();
+  }
+
+  void onTapCard(pr) {
+    Get.toNamed(AppRoutes.product, arguments: {'product': pr});
   }
 }

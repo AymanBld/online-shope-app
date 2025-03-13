@@ -70,7 +70,7 @@ class GridProducts extends StatelessWidget {
                                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               pr.discount == '0'
-                                  ? const Text('')
+                                  ? const SizedBox()
                                   : Text(
                                     '${pr.price} \$',
                                     style: const TextStyle(

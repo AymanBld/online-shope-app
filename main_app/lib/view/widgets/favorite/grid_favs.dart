@@ -26,53 +26,55 @@ class GridFavorites extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   ProductModel pr = ProductModel.fromJson(controller.favProducts[index]);
-                  return Card(
-                    // clipBehavior: Clip.hardEdge,
-                    color: Colors.white,
-                    elevation: 10,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          color: AppColor.primryColorLight,
-                          width: double.infinity,
-                          height: 140,
-                          padding: const EdgeInsets.all(10),
-                          child: Image.asset('assets/pngs/iphone.png', fit: BoxFit.contain),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(pr.name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                            IconButton(
-                              onPressed: () {
-                                controller.removeFav(pr.id);
-                              },
-                              icon: const Icon(Icons.favorite),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              '${pr.dicountedPrice} \$',
-                              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                            ),
-                            pr.discount == '0'
-                                ? const SizedBox()
-                                : Text(
-                                  '${pr.price} \$',
-                                  style: const TextStyle(
-                                    decoration: TextDecoration.lineThrough,
-                                    decorationColor: Colors.red,
-                                    fontSize: 13,
-                                    color: Colors.red,
+                  return InkWell(
+                    onTap: () => controller.onTapCard(pr),
+                    child: Card(
+                      color: Colors.white,
+                      elevation: 10,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            color: AppColor.primryColorLight,
+                            width: double.infinity,
+                            height: 140,
+                            padding: const EdgeInsets.all(10),
+                            child: Image.asset('assets/pngs/iphone.png', fit: BoxFit.contain),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(pr.name, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                              IconButton(
+                                onPressed: () {
+                                  controller.removeFav(pr);
+                                },
+                                icon: const Icon(Icons.favorite),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                '${pr.dicountedPrice} \$',
+                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              pr.discount == '0'
+                                  ? const SizedBox()
+                                  : Text(
+                                    '${pr.price} \$',
+                                    style: const TextStyle(
+                                      decoration: TextDecoration.lineThrough,
+                                      decorationColor: Colors.red,
+                                      fontSize: 13,
+                                      color: Colors.red,
+                                    ),
                                   ),
-                                ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },

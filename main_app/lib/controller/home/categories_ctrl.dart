@@ -21,13 +21,13 @@ class CategoriesCtrl extends GetxController {
     super.onInit();
   }
 
-  initData() {
+  void initData() {
     categories = Get.arguments['categories'];
     selectedcat = Get.arguments['selected_cat'];
     getproducts();
   }
 
-  getproducts() async {
+  Future<void> getproducts() async {
     Map response = await crud.get(url: AppLinks.productsByCategory, queryPar: '$selectedcat/');
     statusrequest = handlingStatus(response);
     update();
@@ -38,25 +38,25 @@ class CategoriesCtrl extends GetxController {
     }
   }
 
-  changeCat(id) {
+  void changeCat(id) {
     selectedcat = id;
     getproducts();
     update();
   }
 
-  addFav(ProductModel pr) async {
-    await crud.post(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
+  void addFav(ProductModel pr) {
+    crud.post(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
     productsOfCat.firstWhere((e) => e['id'] == pr.id)['is_favorite'] = true;
     update();
   }
 
-  removeFav(ProductModel pr) async {
-    await crud.delete(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
+  void removeFav(ProductModel pr) {
+    crud.delete(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
     productsOfCat.firstWhere((e) => e['id'] == pr.id)['is_favorite'] = false;
     update();
   }
 
-  onTapCard(pr) {
+  void onTapCard(pr) {
     Get.toNamed(AppRoutes.product, arguments: {'product': pr});
   }
 }

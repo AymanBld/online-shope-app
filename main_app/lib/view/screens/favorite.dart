@@ -13,7 +13,7 @@ class MyFavorite extends StatelessWidget {
           padding: EdgeInsets.all(10),
           child: Column(children: [
             HomeAppBar(),
-            GridFavorites(),
+            GridFavorites(), 
           ]),
         ),
       ),

@@ -47,14 +47,14 @@ class SearchCtrl extends GetxController {
     }
   }
 
-  Future<void> addFav(ProductModel pr) async {
-    await crud.post(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
+  void addFav(ProductModel pr) {
+    crud.post(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
     productsFound.firstWhere((e) => e['id'] == pr.id)['is_favorite'] = true;
     update();
   }
 
-  Future<void> removeFav(ProductModel pr) async {
-    await crud.delete(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
+  void removeFav(ProductModel pr) {
+    crud.delete(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
     productsFound.firstWhere((e) => e['id'] == pr.id)['is_favorite'] = false;
     update();
   }
