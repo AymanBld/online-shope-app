@@ -51,11 +51,11 @@ class CustomAddress extends GetView<AddressCtrl> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text('${adr.name}'),
+      title: Text(adr.name),
       subtitle: Text('${adr.city}, ${adr.street}'),
       trailing: IconButton(
         onPressed: () {
-          controller.removeAddress(adr.id!, adr.name!);
+          controller.removeAddress(adr.id, adr.name);
         },
         icon: const Icon(Icons.delete),
       ),

@@ -19,7 +19,7 @@ class ListCategories extends GetView<HomeCtrl> {
           CategoryModel cat = CategoryModel.fromJson(controller.categories[index]);
           return InkWell(
             onTap: () {
-              controller.onTapCat(cat.id!);
+              controller.onTapCat(cat.id);
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -30,7 +30,7 @@ class ListCategories extends GetView<HomeCtrl> {
                   width: 70,
                   child: const Icon(Icons.laptop, color: Colors.white, size: 40),
                 ),
-                Text(cat.name!),
+                Text(cat.name),
               ],
             ),
           );

@@ -28,7 +28,7 @@ class AddressChose extends StatelessWidget {
                   child: ListTile(
                     titleTextStyle: const TextStyle(color: Colors.white, fontSize: 18),
                     subtitleTextStyle: const TextStyle(color: Colors.white, fontSize: 13),
-                    title: Text(adr.name!),
+                    title: Text(adr.name),
                     subtitle: Text('${adr.city}, ${adr.street}'),
                   ),
                 ),

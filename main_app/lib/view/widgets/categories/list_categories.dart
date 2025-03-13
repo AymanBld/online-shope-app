@@ -22,10 +22,10 @@ class ListCats extends StatelessWidget {
                 CategoryModel cat = CategoryModel.fromJson(controller.categories[index]);
                 return InkWell(
                   onTap: () {
-                    controller.changeCat(cat.id!);
+                    controller.changeCat(cat.id);
                   },
                   child: Text(
-                    cat.name!,
+                    cat.name,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
