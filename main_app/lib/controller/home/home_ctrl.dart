@@ -4,12 +4,7 @@ import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:get/get.dart';
 
-abstract class HomeCtrlAll extends GetxController {
-  initData();
-  onTapCat(int id);
-}
-
-class HomeCtrl extends HomeCtrlAll {
+class HomeCtrl extends GetxController {
   StatusRequest statusrequest = StatusRequest.loading;
   Crud crud = Get.find<Crud>();
 
@@ -22,7 +17,6 @@ class HomeCtrl extends HomeCtrlAll {
     super.onInit();
   }
 
-  @override
   initData() async {
     Map responseCategory = await crud.get(url: AppLinks.category);
     Map responseDeal = await crud.get(url: AppLinks.dealProducts);
@@ -36,7 +30,6 @@ class HomeCtrl extends HomeCtrlAll {
     } else {}
   }
 
-  @override
   onTapCat(id) {
     Get.toNamed(AppRoutes.categories, arguments: {'categories': categories, 'selected_cat': id});
   }

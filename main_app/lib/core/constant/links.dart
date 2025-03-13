@@ -24,9 +24,7 @@ class AppLinks {
 
   //--------favorite---------------------------------------------------------
 
-  static const String getFavs = "$serverLink/favorite/";
   static const String manageFav = "$serverLink/favorite/"; // favorite/<int>/
-  // static const String removFav = "$serverLink/favorite/remove_fav";
 
   //-------------cart--------------------------------------------------------
 
