@@ -1,41 +1,41 @@
 class AddressModel {
-  int? addressId;
-  String? addressName;
-  String? addressCity;
-  String? addressStreet;
-  double? addressLang;
-  double? addressLat;
-  int? addressUser;
+  late int id;
+  late String name;
+  late String city;
+  String? street;
+  int? lang;
+  double? lat;
+  late int user;
 
   AddressModel({
-    this.addressId,
-    this.addressName,
-    this.addressCity,
-    this.addressStreet,
-    this.addressLang,
-    this.addressLat,
-    this.addressUser,
+    required this.id,
+    required this.name,
+    required this.city,
+    this.street,
+    this.lang,
+    this.lat,
+    required this.user,
   });
 
   AddressModel.fromJson(Map<String, dynamic> json) {
-    addressId = json['address_id'];
-    addressName = json['address_name'];
-    addressCity = json['address_city'];
-    addressStreet = json['address_street'];
-    addressLang = json['address_lang'];
-    addressLat = json['address_lat'];
-    addressUser = json['address_user'];
+    id = json['id'];
+    name = json['name'];
+    city = json['city'];
+    street = json['street'];
+    lang = json['lang'];
+    lat = json['lat'];
+    user = json['user'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['address_id'] = addressId;
-    data['address_name'] = addressName;
-    data['address_city'] = addressCity;
-    data['address_street'] = addressStreet;
-    data['address_lang'] = addressLang;
-    data['address_lat'] = addressLat;
-    data['address_user'] = addressUser;
+    data['id'] = id;
+    data['name'] = name;
+    data['city'] = city;
+    data['street'] = street;
+    data['lang'] = lang;
+    data['lat'] = lat;
+    data['user'] = user;
     return data;
   }
 }

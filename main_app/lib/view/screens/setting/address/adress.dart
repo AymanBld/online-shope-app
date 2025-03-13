@@ -25,18 +25,20 @@ class Address extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       appBar: const CustumAppBar(title: 'Address'),
       body: GetBuilder<AddressCtrl>(
-        builder: (controller) => HandlingStates(
-          status: controller.statusRequest,
-          widget: Padding(
-            padding: const EdgeInsets.all(10),
-            child: ListView.builder(
-                itemCount: controller.addressList.length,
-                itemBuilder: (context, index) {
-                  AddressModel adr = AddressModel.fromJson(controller.addressList[index]);
-                  return CustomAddress(adr: adr);
-                }),
-          ),
-        ),
+        builder:
+            (controller) => HandlingStates(
+              status: controller.statusRequest,
+              widget: Padding(
+                padding: const EdgeInsets.all(10),
+                child: ListView.builder(
+                  itemCount: controller.addressList.length,
+                  itemBuilder: (context, index) {
+                    AddressModel adr = AddressModel.fromJson(controller.addressList[index]);
+                    return CustomAddress(adr: adr);
+                  },
+                ),
+              ),
+            ),
       ),
     );
   }
@@ -44,19 +46,16 @@ class Address extends StatelessWidget {
 
 class CustomAddress extends GetView<AddressCtrl> {
   final AddressModel adr;
-  const CustomAddress({
-    super.key,
-    required this.adr,
-  });
+  const CustomAddress({super.key, required this.adr});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text('${adr.addressName}'),
-      subtitle: Text('${adr.addressCity}, ${adr.addressStreet}'),
+      title: Text('${adr.name}'),
+      subtitle: Text('${adr.city}, ${adr.street}'),
       trailing: IconButton(
         onPressed: () {
-          controller.removeAddress(adr.addressId!, adr.addressName!);
+          controller.removeAddress(adr.id!, adr.name!);
         },
         icon: const Icon(Icons.delete),
       ),
