@@ -44,7 +44,7 @@ class LoginController extends GetxController {
         } else {
           Get.offNamed(AppRoutes.checkCode);
         }
-      } else if (statusrequest == StatusRequest.failed) {
+      } else {
         Get.defaultDialog(title: 'Ooops', content: Text(response['error']));
       }
     }

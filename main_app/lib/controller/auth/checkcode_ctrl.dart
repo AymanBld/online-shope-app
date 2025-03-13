@@ -27,7 +27,7 @@ class CheckCodeCtrl extends GetxController {
       where == 'signup'
           ? Get.offAllNamed(AppRoutes.success)
           : Get.offAllNamed(AppRoutes.resetPassword, arguments: {'username': username});
-    } else if (statusrequest == StatusRequest.failed) {
+    } else {
       Get.defaultDialog(title: 'Eroor', content: Text(response['error']));
     }
   }

@@ -34,7 +34,7 @@ class ResetPasswordCtrl extends GetxController {
 
         if (statusrequest == StatusRequest.success) {
           Get.offAllNamed(AppRoutes.success);
-        } else if (statusrequest == StatusRequest.failed) {
+        } else {
           Get.defaultDialog(title: 'error', content: Text(response['error']));
         }
       } else {

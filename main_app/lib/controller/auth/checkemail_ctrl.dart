@@ -29,7 +29,7 @@ class CheckEmailCtrl extends GetxController {
 
       if (statusrequest == StatusRequest.success) {
         Get.offAllNamed(AppRoutes.checkCode, arguments: {'username': username.text, 'where': 'reset'});
-      } else if (statusrequest == StatusRequest.failed) {
+      } else{
         Get.defaultDialog(title: 'Error', content: Text(response['error']));
       }
     }

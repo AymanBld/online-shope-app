@@ -34,7 +34,7 @@ class ResetPassword extends StatelessWidget {
                     ),
                     const SizedBox(height: 60),
                     CustumTextField(
-                      control: controller.password,
+                      control: controller.password1,
                       type: TextInputType.name,
                       valid: (val) {
                         return validate(val!, 'password', min: 8);
@@ -44,7 +44,7 @@ class ResetPassword extends StatelessWidget {
                       icon: Icons.lock_open_outlined,
                     ),
                     CustumTextField(
-                      control: controller.resetpassword,
+                      control: controller.password2,
                       type: TextInputType.name,
                       valid: (val) {
                         return validate(val!, 'password', min: 8);

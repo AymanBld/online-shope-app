@@ -44,8 +44,8 @@ class SignUpController extends SignUpControllerAll {
 
       if (statusrequest == StatusRequest.success) {
         Get.offNamed(AppRoutes.checkCode, arguments: {'email': email.text, 'where': 'signup'});
-      } else if (statusrequest == StatusRequest.failed) {
-        Get.defaultDialog(title: 'warning', content: const Text('Email or Phone allredy existe!'));
+      } else  {
+        Get.defaultDialog(title: 'warning', content: Text(response['error']));
       }
     }
   }
