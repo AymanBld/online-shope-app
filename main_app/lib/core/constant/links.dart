@@ -9,7 +9,7 @@ class AppLinks {
   // static const String logout = "$serverLink/auth/logout/";
   static const String login = "$serverLink/auth/login/";
   static const String signup = "$serverLink/auth/registration/";
-  static const String verifyCode = "$serverLink/auth/verify/";
+  static const String checkCode = "$serverLink/auth/verify/";
   static const String resendCode = "$serverLink/auth/resend-email/";
   static const String checkEmail = "$serverLink/auth/password/forget/";
   static const String resetPassword = "$serverLink/auth/password/reset/";

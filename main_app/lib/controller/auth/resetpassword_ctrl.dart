@@ -12,7 +12,7 @@ class ResetPasswordCtrl extends GetxController {
   StatusRequest? statusrequest;
   Crud crud = Get.find<Crud>();
 
-  late String email;
+  late String username;
 
   resetPass() async {
     if (formKey.currentState!.validate()) {
@@ -45,7 +45,7 @@ class ResetPasswordCtrl extends GetxController {
   void onInit() {
     password = TextEditingController();
     resetpassword = TextEditingController();
-    email = Get.arguments['email'];
+    username = Get.arguments['username'];
     super.onInit();
   }
 
