@@ -78,7 +78,7 @@ class GridSearch extends StatelessWidget {
                                 '${pr.dicountedPrice} \$',
                                 style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                               ),
-                              pr.discount == 0
+                              pr.discount == '0'
                                   ? const Text('')
                                   : Text(
                                     '${pr.price} \$',

@@ -3,10 +3,10 @@ import 'package:online_shope_app/model/categories_model.dart';
 class ProductModel {
   late int id;
   late String name;
-  String? description;
-  String? imageUrl;
-  late double price;
-  int? discount;
+  late String description;
+  late String imageUrl;
+  late String price;
+  late String discount;
   late bool isFavorite;
   late CategoryModel category;
   late double dicountedPrice;
@@ -14,10 +14,10 @@ class ProductModel {
   ProductModel({
     required this.id,
     required this.name,
-    this.description,
-    this.imageUrl,
+    required this.description,
+    required this.imageUrl,
     required this.price,
-    this.discount,
+    required this.discount,
     required this.isFavorite,
     required this.category,
     required this.dicountedPrice,

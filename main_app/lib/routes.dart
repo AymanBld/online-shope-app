@@ -1,7 +1,7 @@
 import 'package:online_shope_app/core/constant/routes.dart';
 import 'package:online_shope_app/core/middleware/mymiddleware.dart';
 import 'package:online_shope_app/view/screens/auth/check_code.dart';
-import 'package:online_shope_app/view/screens/auth/chek_email.dart';
+import 'package:online_shope_app/view/screens/auth/check_email.dart';
 import 'package:online_shope_app/view/screens/auth/reset_password.dart';
 import 'package:online_shope_app/view/screens/auth/login.dart';
 import 'package:online_shope_app/view/screens/auth/signup.dart';

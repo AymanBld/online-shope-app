@@ -59,7 +59,7 @@ class GridFavorites extends StatelessWidget {
                               '${pr.dicountedPrice} \$',
                               style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                             ),
-                            pr.discount == 0
+                            pr.discount == '0'
                                 ? const SizedBox()
                                 : Text(
                                   '${pr.price} \$',

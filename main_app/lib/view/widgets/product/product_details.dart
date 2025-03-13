@@ -23,7 +23,7 @@ class ProductDetails extends GetView<ProductCtrl> {
           children: [
             const SizedBox(height: 20),
             Text(controller.pr.name, style: Theme.of(context).textTheme.titleMedium),
-            Text('${controller.pr.discount! * 10}'),
+            Text(controller.pr.discount * 10),
             const SizedBox(height: 10),
             const Counter(),
           ],
