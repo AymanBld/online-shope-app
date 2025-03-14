@@ -1,27 +1,32 @@
 import 'package:online_shope_app/controller/orders/cart_ctrl.dart';
+import 'package:online_shope_app/core/class/crud.dart';
+import 'package:online_shope_app/core/constant/links.dart';
+import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:online_shope_app/model/products_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ProductCtrl extends GetxController {
+  Crud crud = Get.find<Crud>();
   late ProductModel pr;
   CartCtrl cartCtrl = CartCtrl();
-  int contityToAdd = 0;
+  int quantityToAdd = 0;
 
   @override
   void onInit() {
-    initData();
+    pr = Get.arguments['product'];
     super.onInit();
   }
 
-  initData() {
-    pr = Get.arguments['product'];
-  }
+  Future<void> addToCart() async {
+    if (quantityToAdd == 0) return;
+    Map response = await crud.post(
+      url: AppLinks.addCart,
+      body: {'product': pr.id.toString(), 'quantity': quantityToAdd.toString()},
+    );
 
-  addToCart() async {
-    Map response = await cartCtrl.updat(pr.id.toString(), contityToAdd);
-    if (response['status'] == 'success') {
+    if (handlingStatus(response) == StatusRequest.success) {
       Get.snackbar(
         'succes',
         'product added to your cart',

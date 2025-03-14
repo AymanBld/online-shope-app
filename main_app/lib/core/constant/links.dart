@@ -6,7 +6,6 @@ class AppLinks {
 
   //--------auth---------------------------------------------------------------
 
-  // static const String logout = "$serverLink/auth/logout/";
   static const String login = "$serverLink/auth/login/";
   static const String signup = "$serverLink/auth/registration/";
   static const String checkCode = "$serverLink/auth/verify/";
@@ -16,7 +15,6 @@ class AppLinks {
 
   //--------home---------------------------------------------------------
 
-  static const String home = "$serverLink/home/home"; // !!!!! not yet
   static const String dealProducts = "$serverLink/products/deals/";
   static const String productsByCategory = "$serverLink/products/category/"; //  category/<int>
   static const String search = "$serverLink/products/search/";
@@ -24,7 +22,7 @@ class AppLinks {
 
   //--------favorite---------------------------------------------------------
 
-  static const String manageFav = "$serverLink/favorite/"; // favorite/<int>/
+  static const String manageFav = "$serverLink/favorite/";
 
   //-------------cart--------------------------------------------------------
 
