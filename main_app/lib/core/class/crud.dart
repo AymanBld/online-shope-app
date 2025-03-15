@@ -10,7 +10,6 @@ class Crud {
   Future<Map> get({required String url, String queryPar = ''}) async {
     return await sendRequest(
       () => http.get(Uri.parse(url + queryPar), headers: {'user': myservices.sharedpref.getString('id') ?? '0'}),
-      isGet: true,
     );
   }
 
@@ -44,14 +43,13 @@ class Crud {
     );
   }
 
-  Future<Map> sendRequest(Future<http.Response> Function() request, {bool isGet = false}) async {
+  Future<Map> sendRequest(Future<http.Response> Function() request) async {
     try {
       if (await checkInternet()) {
         http.Response response = await request();
         print('=======respons============${response.body}======');
 
         if (response.statusCode < 300) {
-          // if (isGet) {
           if (response.request!.method == 'GET') {
             List responsebody = jsonDecode(response.body);
             return {'data': responsebody};
@@ -65,7 +63,6 @@ class Crud {
         return {"status": StatusRequest.internetFailed, 'error': 'no internet connection'};
       }
     } catch (e) {
-      print('------------request error-----------$e-----------');
       return {"status": StatusRequest.exceptionFailed, 'error': e};
     }
   }

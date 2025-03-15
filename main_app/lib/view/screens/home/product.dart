@@ -24,7 +24,7 @@ class Product extends StatelessWidget {
             GetBuilder<ProductCtrl>(
               builder:
                   (controller) =>
-                      Text('${controller.pr.dicountedPrice}\$', style: Theme.of(context).textTheme.titleMedium),
+                      Text('${controller.pr.discountedPrice}\$', style: Theme.of(context).textTheme.titleMedium),
             ),
             SizedBox(
               width: Get.width * 0.4,

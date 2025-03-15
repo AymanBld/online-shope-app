@@ -9,7 +9,7 @@ class ProductModel {
   late String discount;
   late bool isFavorite;
   late CategoryModel category;
-  late double dicountedPrice;
+  late double discountedPrice;
 
   ProductModel({
     required this.id,
@@ -20,7 +20,7 @@ class ProductModel {
     required this.discount,
     required this.isFavorite,
     required this.category,
-    required this.dicountedPrice,
+    required this.discountedPrice,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -31,7 +31,7 @@ class ProductModel {
     price = json['price'];
     discount = json['discount'];
     isFavorite = json['is_favorite'];
-    dicountedPrice = json['dicountedPrice'];
+    discountedPrice = json['discountedPrice'];
     category = CategoryModel.fromJson(json['category']);
   }
 
@@ -44,7 +44,7 @@ class ProductModel {
     data['price'] = price;
     data['discount'] = discount;
     data['is_favorite'] = isFavorite;
-    data['dicountedPrice'] = dicountedPrice;
+    data['discountedPrice'] = discountedPrice;
     data['category'] = category.toJson();
     return data;
   }

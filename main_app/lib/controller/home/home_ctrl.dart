@@ -1,8 +1,8 @@
 import 'package:online_shope_app/core/class/crud.dart';
 import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
-import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:get/get.dart';
+import 'package:online_shope_app/core/functions/handle_statuss.dart';
 
 class HomeCtrl extends GetxController {
   StatusRequest statusrequest = StatusRequest.loading;
@@ -12,22 +12,32 @@ class HomeCtrl extends GetxController {
   List products = [];
 
   @override
-  void onInit() {
-    initData();
+  Future<void> onInit() async {
+    await fetchCategories();
+    await fetchDeals();
     super.onInit();
   }
 
-  initData() async {
-    Map responseCategory = await crud.get(url: AppLinks.category);
+  Future<void> fetchDeals() async {
     Map responseDeal = await crud.get(url: AppLinks.dealProducts);
     statusrequest = handlingStatus(responseDeal);
     update();
 
     if (statusrequest == StatusRequest.success) {
-      categories.addAll(responseCategory['data']);
       products.addAll(responseDeal['data']);
-      update();
     } else {}
+    update();
+  }
+
+  Future<void> fetchCategories() async {
+    Map responseCategory = await crud.get(url: AppLinks.category);
+    statusrequest = handlingStatus(responseCategory);
+    update();
+
+    if (statusrequest == StatusRequest.success) {
+      categories.addAll(responseCategory['data']);
+    } else {}
+    update();
   }
 
   onTapCat(id) {

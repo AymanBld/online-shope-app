@@ -1,3 +1,4 @@
+
 import 'package:online_shope_app/core/class/crud.dart';
 import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
@@ -6,16 +7,7 @@ import 'package:online_shope_app/core/services/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-abstract class CartCtrlAll extends GetxController {
-  updat(String id, int contity) {}
-  remove(String id) {}
-  get() {}
-  checkCoupon(String coupon) {}
-  setTotalPrice() {}
-  checkOut() {}
-}
-
-class CartCtrl extends CartCtrlAll {
+class CartCtrl extends GetxController {
   Crud crud = Get.find<Crud>();
   Myservices myservices = Get.find();
   StatusRequest statusrequest = StatusRequest.loading;
@@ -31,7 +23,7 @@ class CartCtrl extends CartCtrlAll {
   @override
   void onInit() {
     couponCtrl = TextEditingController();
-    get();
+    fetchCart();
     super.onInit();
   }
 
@@ -41,44 +33,34 @@ class CartCtrl extends CartCtrlAll {
     super.onClose();
   }
 
-  @override
-  updat(id, contity) async {
-    Map response = await crud.post(
-      url: AppLinks.updateRemoveCart,
-      body: {'user_id': myservices.sharedpref.getString('id'), 'product_id': id, 'product_contity': contity.toString()},
-    );
-    return response;
+  void incQuantity() {}
+
+  Future<void> modifyQuantity(int id, int val) async {
+    if (val != 0) {
+      crud.patch(url: AppLinks.updateRemoveCart, queryPar: '$id/', body: {'quantity': val.toString()});
+      cartProducts.firstWhere((cartpr) => cartpr['id'] == id)['quantity'] = val;
+    } else {
+      crud.delete(url: AppLinks.updateRemoveCart, queryPar: '$id/');
+      cartProducts.removeWhere((cartpr) => cartpr['id'] == id);
+    }
+    setFinalValues();
+    update();
   }
 
-  @override
-  remove(id) async {
-    await crud.post(
-      url: AppLinks.updateRemoveCart,
-      body: {'user_id': myservices.sharedpref.getString('id'), 'product_id': id},
-    );
-  }
-
-  @override
-  get() async {
-    Map response = await crud.post(url: AppLinks.getCart, body: {'user_id': myservices.sharedpref.getString('id')});
+  Future<void> fetchCart() async {
+    Map response = await crud.get(url: AppLinks.getCart);
     statusrequest = handlingStatus(response);
 
     if (statusrequest == StatusRequest.success) {
       cartProducts = response['data'];
-      totalCount = response['total_count'];
-      subTotal = double.parse(response['total_price']);
+      setFinalValues();
     } else {
-      cartProducts = [];
-      totalCount = 0;
-      subTotal = 0;
-      totalPrice = 0;
+      Get.defaultDialog(title: 'Ooops', middleText: response['error']);
     }
-    setTotalPrice();
     update();
   }
 
-  @override
-  checkCoupon(String coupon) async {
+  Future<void> checkCoupon(String coupon) async {
     statusRqCoupon = StatusRequest.loading;
     update();
 
@@ -91,17 +73,22 @@ class CartCtrl extends CartCtrlAll {
     } else {
       couponDiscount = 0;
     }
-    setTotalPrice();
+    setFinalValues();
     update();
   }
 
-  @override
-  setTotalPrice() {
+  setFinalValues() {
+    totalCount = 0;
+    subTotal = 0;
+    for (Map pr in cartProducts) {
+      totalCount += pr['quantity'] as int;
+      subTotal += pr['product']['discountedPrice'] * pr['quantity'];
+    }
     double x = subTotal * (1 - couponDiscount / 100);
+    subTotal = double.parse((x.toStringAsFixed(2)));
     totalPrice = double.parse((x.toStringAsFixed(2)));
   }
 
-  @override
   checkOut() {
     if (cartProducts.isNotEmpty) {
       Get.toNamed(AppRoutes.checkOut, arguments: {'total_price': totalPrice, 'total_count': totalCount});

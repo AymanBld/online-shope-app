@@ -57,7 +57,7 @@ class GridFavorites extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Text(
-                                '${pr.dicountedPrice} \$',
+                                '${pr.discountedPrice} \$',
                                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               pr.discount == '0'

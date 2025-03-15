@@ -1,6 +1,6 @@
 import 'package:online_shope_app/binding.dart';
 import 'package:online_shope_app/core/localization/local_cotroller.dart';
-import 'package:online_shope_app/core/localization/translation.dart'; 
+import 'package:online_shope_app/core/localization/translation.dart';
 import 'package:online_shope_app/core/services/services.dart';
 import 'package:online_shope_app/routes.dart';
 import 'package:flutter/material.dart';

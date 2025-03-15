@@ -9,7 +9,7 @@ class ProductsForYou extends GetView<HomeCtrl> {
 
   @override
   Widget build(BuildContext context) {
-    ProductModel pr;
+    // ProductModel pr;
     return SizedBox(
       height: 150,
       child: ListView.separated(
@@ -17,7 +17,7 @@ class ProductsForYou extends GetView<HomeCtrl> {
         itemCount: controller.products.length,
         separatorBuilder: (context, index) => const SizedBox(width: 15),
         itemBuilder: (context, index) {
-          pr = ProductModel.fromJson(controller.products[index]);
+          ProductModel pr = ProductModel.fromJson(controller.products[index]);
           return Stack(
             alignment: Alignment.center,
             children: [
