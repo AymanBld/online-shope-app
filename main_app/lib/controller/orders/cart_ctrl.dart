@@ -1,4 +1,3 @@
-
 import 'package:online_shope_app/core/class/crud.dart';
 import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
@@ -33,20 +32,6 @@ class CartCtrl extends GetxController {
     super.onClose();
   }
 
-  void incQuantity() {}
-
-  Future<void> modifyQuantity(int id, int val) async {
-    if (val != 0) {
-      crud.patch(url: AppLinks.updateRemoveCart, queryPar: '$id/', body: {'quantity': val.toString()});
-      cartProducts.firstWhere((cartpr) => cartpr['id'] == id)['quantity'] = val;
-    } else {
-      crud.delete(url: AppLinks.updateRemoveCart, queryPar: '$id/');
-      cartProducts.removeWhere((cartpr) => cartpr['id'] == id);
-    }
-    setFinalValues();
-    update();
-  }
-
   Future<void> fetchCart() async {
     Map response = await crud.get(url: AppLinks.getCart);
     statusrequest = handlingStatus(response);
@@ -60,16 +45,27 @@ class CartCtrl extends GetxController {
     update();
   }
 
-  Future<void> checkCoupon(String coupon) async {
+  Future<void> modifyQuantity(int id, int val) async {
+    if (val != 0) {
+      crud.patch(url: AppLinks.updateRemoveCart, queryPar: '$id/', body: {'quantity': val.toString()});
+      cartProducts.firstWhere((cartpr) => cartpr['id'] == id)['quantity'] = val;
+    } else {
+      crud.delete(url: AppLinks.updateRemoveCart, queryPar: '$id/');
+      cartProducts.removeWhere((cartpr) => cartpr['id'] == id);
+    }
+    setFinalValues();
+    update();
+  }
+
+  Future<void> checkCoupon() async {
     statusRqCoupon = StatusRequest.loading;
     update();
 
-    Map response = await crud.post(url: AppLinks.checkCoupon, body: {'coupon_name': coupon});
-
+    Map response = await crud.post(url: AppLinks.checkCoupon, body: {'coupon': couponCtrl.text});
     statusRqCoupon = handlingStatus(response);
-
+    
     if (statusRqCoupon == StatusRequest.success) {
-      couponDiscount = response['data'][0]['coupon_discount'];
+      couponDiscount = response['discount'];
     } else {
       couponDiscount = 0;
     }
@@ -77,7 +73,7 @@ class CartCtrl extends GetxController {
     update();
   }
 
-  setFinalValues() {
+  void setFinalValues() {
     totalCount = 0;
     subTotal = 0;
     for (Map pr in cartProducts) {
