@@ -1,4 +1,5 @@
 import 'package:online_shope_app/controller/home/home_ctrl.dart';
+import 'package:online_shope_app/core/class/handling_states.dart';
 import 'package:online_shope_app/core/constant/colors.dart';
 import 'package:online_shope_app/model/products_model.dart';
 import 'package:flutter/material.dart';
@@ -9,42 +10,47 @@ class ProductsForYou extends GetView<HomeCtrl> {
 
   @override
   Widget build(BuildContext context) {
-    // ProductModel pr;
-    return SizedBox(
-      height: 150,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: controller.products.length,
-        separatorBuilder: (context, index) => const SizedBox(width: 15),
-        itemBuilder: (context, index) {
-          ProductModel pr = ProductModel.fromJson(controller.products[index]);
-          return Stack(
-            alignment: Alignment.center,
-            children: [
-              Image.asset('assets/pngs/iphone.png', height: 140, width: 200, fit: BoxFit.contain),
-              Container(
-                width: 210,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    stops: const [0, 0.7],
-                    colors: [AppColor.primryColorDark.withOpacity(0.8), Colors.transparent],
-                  ),
-                ),
+    return GetBuilder<HomeCtrl>(
+      builder:
+          (controller) => HandlingStates(
+            status: controller.productStatusReq,
+            widget: SizedBox(
+              height: 150,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.products.length,
+                separatorBuilder: (context, index) => const SizedBox(width: 15),
+                itemBuilder: (context, index) {
+                  ProductModel pr = ProductModel.fromJson(controller.products[index]);
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image.asset('assets/pngs/iphone.png', height: 140, width: 200, fit: BoxFit.contain),
+                      Container(
+                        width: 210,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            stops: const [0, 0.7],
+                            colors: [AppColor.primryColorDark.withOpacity(0.8), Colors.transparent],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 5,
+                        child: Text(
+                          pr.name,
+                          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
-              Positioned(
-                bottom: 5,
-                child: Text(
-                  pr.name,
-                  style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+            ),
+          ),
     );
   }
 }

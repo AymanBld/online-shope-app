@@ -10,7 +10,7 @@ class HandlingStates extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (status) {
       case StatusRequest.loading:
-        return const Center(child: Text('loading...'));
+        return const Center(child: CircularProgressIndicator());
       case StatusRequest.internetFailed:
         return const Center(child: Text('internet failed...'));
       case StatusRequest.serverFailed:

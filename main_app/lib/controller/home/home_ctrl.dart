@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:online_shope_app/core/functions/handle_statuss.dart';
 
 class HomeCtrl extends GetxController {
-  StatusRequest statusrequest = StatusRequest.loading;
+  StatusRequest categotyStatusReq = StatusRequest.loading;
+  StatusRequest productStatusReq = StatusRequest.loading;
   Crud crud = Get.find<Crud>();
 
   List categories = [];
@@ -20,10 +21,10 @@ class HomeCtrl extends GetxController {
 
   Future<void> fetchDeals() async {
     Map responseDeal = await crud.get(url: AppLinks.dealProducts);
-    statusrequest = handlingStatus(responseDeal);
+    productStatusReq = handlingStatus(responseDeal);
     update();
 
-    if (statusrequest == StatusRequest.success) {
+    if (productStatusReq == StatusRequest.success) {
       products.addAll(responseDeal['data']);
     } else {}
     update();
@@ -31,10 +32,10 @@ class HomeCtrl extends GetxController {
 
   Future<void> fetchCategories() async {
     Map responseCategory = await crud.get(url: AppLinks.category);
-    statusrequest = handlingStatus(responseCategory);
+    categotyStatusReq = handlingStatus(responseCategory);
     update();
 
-    if (statusrequest == StatusRequest.success) {
+    if (categotyStatusReq == StatusRequest.success) {
       categories.addAll(responseCategory['data']);
     } else {}
     update();

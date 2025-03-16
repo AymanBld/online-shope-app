@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
     return GetBuilder<HomeCtrl>(
       init: HomeCtrl(),
       builder: (controller) => HandlingStates(
-        status: controller.statusrequest,
+        status: controller.categotyStatusReq,
         widget: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: ListView(children: const [
