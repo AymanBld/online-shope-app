@@ -14,13 +14,14 @@ class NewAddress extends StatelessWidget {
     NewAddressCtrl controller = Get.put(NewAddressCtrl());
     return Scaffold(
       appBar: const CustumAppBar(title: 'Add New Address'),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
           key: controller.formkey,
           child: ListView(
             children: [
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               CustumTextField(
                 hint: 'set a name to this address',
                 label: 'Name',
@@ -29,6 +30,7 @@ class NewAddress extends StatelessWidget {
                 control: controller.name,
                 valid: (p0) => validate(p0!, ''),
               ),
+              const SizedBox(height: 15),
               CustumTextField(
                 hint: 'your city',
                 label: 'City',
@@ -37,6 +39,7 @@ class NewAddress extends StatelessWidget {
                 control: controller.city,
                 valid: (p0) => validate(p0!, ''),
               ),
+              const SizedBox(height: 15),
               CustumTextField(
                 hint: 'the street',
                 label: 'Street',
@@ -45,12 +48,13 @@ class NewAddress extends StatelessWidget {
                 control: controller.street,
                 valid: (p0) => validate(p0!, ''),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               CustumButton(
-                  text: 'Save',
-                  ontap: () {
-                    controller.onSave();
-                  })
+                text: 'Save',
+                ontap: () {
+                  controller.onSave();
+                },
+              ),
             ],
           ),
         ),

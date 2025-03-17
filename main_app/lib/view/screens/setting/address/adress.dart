@@ -23,6 +23,7 @@ class Address extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      backgroundColor: AppColor.backgroundColor,
       appBar: const CustumAppBar(title: 'Address'),
       body: GetBuilder<AddressCtrl>(
         builder:

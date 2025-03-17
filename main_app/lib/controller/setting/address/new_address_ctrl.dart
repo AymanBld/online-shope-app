@@ -1,6 +1,8 @@
+import 'package:online_shope_app/controller/setting/address/address_ctrl.dart';
 import 'package:online_shope_app/core/class/crud.dart';
 import 'package:online_shope_app/core/constant/links.dart';
 import 'package:online_shope_app/core/constant/routes.dart';
+import 'package:online_shope_app/core/functions/handle_statuss.dart';
 import 'package:online_shope_app/core/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ class NewAddressCtrl extends GetxController {
   late TextEditingController name;
   late TextEditingController city;
   late TextEditingController street;
+
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   Myservices myservices = Get.find();
@@ -30,23 +33,28 @@ class NewAddressCtrl extends GetxController {
     super.onClose();
   }
 
-  onSave() {
+  void onSave() {
     if (formkey.currentState!.validate()) {
       Get.toNamed(AppRoutes.addressPosition);
     }
   }
 
-  addAddress() {
-    crud.post(
+  Future<void> addAddress() async {
+    Map response = await crud.post(
       url: AppLinks.address,
       body: {
-        'adr_name': name.text,
-        'adr_city': city.text,
-        'adr_street': street.text,
-        'adr_lat': '',
-        'adr_long': '',
-        'adr_user': myservices.sharedpref.getString('id'),
+        'name': name.text,
+        'city': city.text,
+        'street': street.text,
+        'lat': ' 22.2',
+        'lang': '22.0909',
+        'user': myservices.sharedpref.getString('id'),
       },
     );
+    if (handlingStatus(response) == StatusRequest.success) {
+      AddressCtrl ctrl = Get.find<AddressCtrl>();
+      ctrl.getAddress();
+    }
+    Get.offNamedUntil(AppRoutes.address, ModalRoute.withName(AppRoutes.address));
   }
 }
