@@ -19,10 +19,7 @@ class OrdersArchiveCtrl extends GetxController {
   }
 
   getOrders() async {
-    Map response = await crud.post(
-      url: AppLinks.getArchiveOrders,
-      body: {'user_id': myservices.sharedpref.getString('id')},
-    );
+    Map response = await crud.get(url: AppLinks.getArchiveOrders);
 
     statusrequest = handlingStatus(response);
     if (statusrequest == StatusRequest.success) {

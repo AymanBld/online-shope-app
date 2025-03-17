@@ -32,10 +32,10 @@ class ArchiveCard extends GetView<OrdersArchiveCtrl> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('${rdr.id}'),
-                    Text('${rdr.totalPrice}'),
-                    Text('${rdr.quantity}'),
-                    Text('${rdr.address}'),
+                    Text(rdr.id.toString()),
+                    Text(rdr.totalPrice.toString()),
+                    Text(rdr.quantity.toString()),
+                    Text(rdr.address.toString()),
                   ],
                 ),
               ],
