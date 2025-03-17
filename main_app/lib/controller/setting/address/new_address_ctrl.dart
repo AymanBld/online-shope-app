@@ -40,7 +40,7 @@ class NewAddressCtrl extends GetxController {
   }
 
   Future<void> addAddress() async {
-    Map response = await crud.post(
+    await crud.post(
       url: AppLinks.address,
       body: {
         'name': name.text,
@@ -51,10 +51,6 @@ class NewAddressCtrl extends GetxController {
         'user': myservices.sharedpref.getString('id'),
       },
     );
-    if (handlingStatus(response) == StatusRequest.success) {
-      AddressCtrl ctrl = Get.find<AddressCtrl>();
-      ctrl.getAddress();
-    }
-    Get.offNamedUntil(AppRoutes.address, ModalRoute.withName(AppRoutes.address));
+    Get.offNamedUntil(AppRoutes.address, ModalRoute.withName(AppRoutes.navBar));
   }
 }
