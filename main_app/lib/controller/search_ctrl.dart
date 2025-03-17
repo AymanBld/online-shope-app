@@ -48,13 +48,13 @@ class SearchCtrl extends GetxController {
   }
 
   void addFav(ProductModel pr) {
-    crud.post(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
+    crud.post(url: AppLinks.favorite, queryPar: '${pr.id.toString()}/');
     productsFound.firstWhere((e) => e['id'] == pr.id)['is_favorite'] = true;
     update();
   }
 
   void removeFav(ProductModel pr) {
-    crud.delete(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
+    crud.delete(url: AppLinks.favorite, queryPar: '${pr.id.toString()}/');
     productsFound.firstWhere((e) => e['id'] == pr.id)['is_favorite'] = false;
     update();
   }

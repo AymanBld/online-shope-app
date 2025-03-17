@@ -20,7 +20,7 @@ class MyFavoriteCtrl extends GetxController {
   }
 
   Future<void> getFavorites() async {
-    Map response = await crud.get(url: AppLinks.manageFav);
+    Map response = await crud.get(url: AppLinks.favorite);
     statusrequest = handlingStatus(response);
 
     if (statusrequest == StatusRequest.success) {
@@ -30,7 +30,7 @@ class MyFavoriteCtrl extends GetxController {
   }
 
   void removeFav(ProductModel pr) {
-    crud.delete(url: AppLinks.manageFav, queryPar: '${pr.id.toString()}/');
+    crud.delete(url: AppLinks.favorite, queryPar: '${pr.id.toString()}/');
     favProducts.removeWhere((product) => product['id'] == pr.id);
     update();
   }

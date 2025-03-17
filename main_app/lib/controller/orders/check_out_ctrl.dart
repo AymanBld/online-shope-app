@@ -22,7 +22,7 @@ class CheckOutCtrl extends GetxController {
   }
 
   getAddress() async {
-    Map response = await crud.post(url: AppLinks.getAdrdress, body: {'user_id': myservices.sharedpref.getString('id')});
+    Map response = await crud.post(url: AppLinks.address, body: {'user_id': myservices.sharedpref.getString('id')});
 
     if (response["status"] == 'success') {
       addressList = response['data'];
@@ -43,7 +43,7 @@ class CheckOutCtrl extends GetxController {
   buyNow() {
     if (payment != null && address != null) {
       crud.post(
-        url: AppLinks.creatOrder,
+        url: AppLinks.order,
         body: {
           'user_id': myservices.sharedpref.getString('id'),
           'order_price': totalprice.toString(),

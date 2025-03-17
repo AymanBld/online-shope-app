@@ -22,7 +22,7 @@ class AppLinks {
 
   //--------favorite---------------------------------------------------------
 
-  static const String manageFav = "$serverLink/favorite/";
+  static const String favorite = "$serverLink/favorite/";
 
   //-------------cart--------------------------------------------------------
 
@@ -33,13 +33,11 @@ class AppLinks {
 
   //------------orders---------------------------------------------------------
 
-  static const String creatOrder = "$serverLink/orders/";
-  static const String order = "$serverLink/orders/"; // orders/<int>/
+  static const String order = "$serverLink/orders/";
   static const String getActiveOrders = "$serverLink/orders/active/";
   static const String getArchiveOrders = "$serverLink/orders/archive/";
 
   //-------------address---------------------------------------------------------
 
-  static const String getAdrdress = "$serverLink/address/";
-  static const String addres = "$serverLink/address/"; // address/<int>/
+  static const String address = "$serverLink/address/";
 }
