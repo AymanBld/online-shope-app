@@ -1,6 +1,6 @@
 class OrderModel {
   late int id;
-  late int totalPrice;
+  late String totalPrice;
   late int quantity;
   late String paymentMethod;
   late int status;
