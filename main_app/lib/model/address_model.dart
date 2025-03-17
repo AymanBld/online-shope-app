@@ -2,8 +2,8 @@ class AddressModel {
   late int id;
   late String name;
   late String city;
-  String? street;
-  int? lang;
+  late String street;
+  double? lang;
   double? lat;
   late int user;
 
@@ -11,7 +11,7 @@ class AddressModel {
     required this.id,
     required this.name,
     required this.city,
-    this.street,
+    required this.street,
     this.lang,
     this.lat,
     required this.user,
