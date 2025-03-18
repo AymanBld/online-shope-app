@@ -2,11 +2,11 @@ class OrderModel {
   late int id;
   late String totalPrice;
   late int quantity;
-  late String paymentMethod;
+  late int paymentMethod;
   late int status;
   late String date;
   late int user;
-  late int delivery;
+  int? delivery;
   late int address;
 
   OrderModel({
@@ -17,7 +17,7 @@ class OrderModel {
     required this.status,
     required this.date,
     required this.user,
-    required this.delivery,
+    this.delivery,
     required this.address,
   });
 

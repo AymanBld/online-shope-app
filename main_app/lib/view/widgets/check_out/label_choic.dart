@@ -1,9 +1,9 @@
-import 'package:online_shope_app/controller/orders/check_out_ctrl.dart';
+import 'package:online_shope_app/controller/orders/cart_ctrl.dart';
 import 'package:online_shope_app/core/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LableChoic extends GetView<CheckOutCtrl> {
+class LableChoic extends GetView<CartCtrl> {
   final String text;
   final bool isSelected;
   final void Function()? onPress;

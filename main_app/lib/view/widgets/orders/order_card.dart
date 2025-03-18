@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 import 'package:online_shope_app/controller/orders/order_ctrl.dart';
 import 'package:online_shope_app/core/constant/colors.dart';
 import 'package:online_shope_app/model/order_model.dart';
@@ -47,10 +49,17 @@ class OrderCard extends GetView<OrderCtrl> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                rdr.status == 0
+                rdr.status == 1
                     ? IconButton(
                       onPressed: () {
-                        controller.deleteOrder(rdr.id);
+                        Get.defaultDialog(
+                          title: 'warning',
+                          middleText: 'Do you rely want to delet this order',
+                          onConfirm: () {
+                            controller.deleteOrder(rdr.id);
+                          },
+                          onCancel: () {},
+                        );
                       },
                       iconSize: 28,
                       color: AppColor.primryColorDark,

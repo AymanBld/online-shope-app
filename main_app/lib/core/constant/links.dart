@@ -30,10 +30,11 @@ class AppLinks {
   static const String updateRemoveCart = "$serverLink/cart/"; // cart/<int>/
   static const String addCart = "$serverLink/cart/add/";
   static const String checkCoupon = "$serverLink/cart/coupon/";
+  static const String checkOut = "$serverLink/cart/checkout/";
 
   //------------orders---------------------------------------------------------
 
-  static const String order = "$serverLink/orders/";
+  static const String manageOrder = "$serverLink/orders/";
   static const String getActiveOrders = "$serverLink/orders/active/";
   static const String getArchiveOrders = "$serverLink/orders/archive/";
 

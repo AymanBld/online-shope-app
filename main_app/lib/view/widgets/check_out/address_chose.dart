@@ -1,4 +1,4 @@
-import 'package:online_shope_app/controller/orders/check_out_ctrl.dart';
+import 'package:online_shope_app/controller/orders/cart_ctrl.dart';
 import 'package:online_shope_app/core/constant/colors.dart';
 import 'package:online_shope_app/model/address_model.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ class AddressChose extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CheckOutCtrl>(
+    return GetBuilder<CartCtrl>(
       builder:
           (controller) => DropdownButton<int>(
             value: controller.address,

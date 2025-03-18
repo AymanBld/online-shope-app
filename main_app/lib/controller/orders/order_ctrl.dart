@@ -33,7 +33,7 @@ class OrderCtrl extends GetxController {
   }
 
   Future<void> deleteOrder(int id) async {
-    await crud.delete(url: AppLinks.order, queryPar: '$id/');
+    await crud.delete(url: AppLinks.manageOrder, queryPar: '$id/');
     await getOrders();
   }
 
