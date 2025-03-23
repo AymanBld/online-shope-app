@@ -28,9 +28,13 @@ A fully functional e-commerce app built with **Flutter** and **Django** for srev
     <td><img src="screenshots/orders.png" alt="List and track orders Screen"/></td>
   </tr>
   <tr>
+    <td></td>
     <td><img src="screenshots/setting.png" alt="Settings Screen"/></td>
   </tr>
 </table>
+<video src="screenshots/search.mp4" controls autoplay loop muted style="max-width: 100%; height: auto;">
+  Your browser does not support the video tag.
+</video>
 
 ---
 
