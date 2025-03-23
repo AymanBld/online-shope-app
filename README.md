@@ -6,11 +6,24 @@ A fully functional e-commerce app built with **Flutter** and **Django** for srev
 ---
 
 ## Screenshots
-<div style="display: flex;">
-  <img src="screenshots/home.png" alt="Home Screen" width="200" />
-  <img src="screenshots/product.png" alt="Product Screen" width="200" />
-  <img src="screenshots/cart.png" alt="Cart Screen" width="200" />
-</div>
+
+<table>
+  <tr>
+    <td><img src="screenshots/login.png" alt="Login Screen" width="200" /></td>
+    <td><img src="screenshots/signup.png" alt="Registration Screen" width="200" /></td>
+    <td><img src="screenshots/otp.png" alt="OTP Verification Screen" width="200" /></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/home.png" alt="Home Screen" width="200" /></td>
+    <td><img src="screenshots/setting.png" alt="Settings Screen" width="200" /></td>
+    <td><img src="screenshots/orders.png" alt="List and track orders Screen" width="200" /></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/details.png" alt="Product details Screen" width="200" /></td>
+    <td><img src="screenshots/cart.png" alt="Cart Screen" width="200" /></td>
+    <td><img src="screenshots/checkout.png" alt="Checkout Screen" width="200" /></td>
+  </tr>
+</table>
 
 ---
 
@@ -47,4 +60,5 @@ Follow these steps to run the app locally:
 
 ## Acknowledgments
 Thanks to the Flutter team for the amazing framework.
+
 Inspired from the full flutter course of Wael Abo Hamza.
