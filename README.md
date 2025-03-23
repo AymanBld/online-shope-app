@@ -8,21 +8,27 @@ A fully functional e-commerce app built with **Flutter** and **Django** for srev
 ## Screenshots
 
 <table>
-<h6>salam</h6>
+<h4>Authentications screens</h4>
   <tr>
     <td><img src="screenshots/login.png" alt="Login Screen"/></td>
     <td><img src="screenshots/signup.png" alt="Registration Screen"/></td>
     <td><img src="screenshots/otp.png" alt="OTP Verification Screen"/></td>
   </tr>
+</table>
+<table>
+  <h4>App screens</h4>
   <tr>
     <td><img src="screenshots/home.png" alt="Home Screen"/></td>
-    <td><img src="screenshots/setting.png" alt="Settings Screen"/></td>
+    <td><img src="screenshots/filters.png" alt="List products by category"/></td>
+    <td><img src="screenshots/details.png" alt="Product details Screen"/></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/cart.png" alt="Cart Screen"/></td>
+    <td><img src="screenshots/checkout.png" alt="Checkout Screen"/></td>
     <td><img src="screenshots/orders.png" alt="List and track orders Screen"/></td>
   </tr>
   <tr>
-    <td><img src="screenshots/details.png" alt="Product details Screen"/></td>
-    <td><img src="screenshots/cart.png" alt="Cart Screen"/></td>
-    <td><img src="screenshots/checkout.png" alt="Checkout Screen"/></td>
+    <td><img src="screenshots/setting.png" alt="Settings Screen"/></td>
   </tr>
 </table>
 
